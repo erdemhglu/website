@@ -60,7 +60,6 @@ export default function SocialLinks() {
     { name: "hackernews", icon: <FontAwesomeIcon icon={faHackerNews} className="w-4 h-4" />, url: "https://news.ycombinator.com/user?id=ta2edh" },
     { name: "instagram", icon: <FontAwesomeIcon icon={faInstagram} className="w-4 h-4" />, url: "http://instagram.com/erdemhglu" },
     { name: "keybase", icon: <FontAwesomeIcon icon={faKeybase} className="w-4 h-4" />, url: "https://keybase.io/ta2edh" },
-    { name: "lastfm", icon: <FontAwesomeIcon icon={faLastfm} className="w-4 h-4" />, url: "https://www.last.fm/user/ta2edh" },
     { name: "lemmy", icon: <LemmyIcon />, url: "https://lemmy.world/u/ta2edh" },
     { name: "linkedin", icon: <FontAwesomeIcon icon={faLinkedin} className="w-4 h-4" />, url: "https://www.linkedin.com/in/erdemhacisalihoglu/" },
     { name: "mastodon", icon: <FontAwesomeIcon icon={faMastodon} className="w-4 h-4" />, url: "https://mastodon.social/@ta2edh" },
