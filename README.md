@@ -1,4 +1,4 @@
-# TA2EDH - Personal Website
+Personal Website
 
 A modern, responsive personal website built with Next.js, React, and Tailwind CSS.
 
