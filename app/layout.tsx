@@ -19,9 +19,9 @@ export const metadata: Metadata = {
     'web programming',
     'system programming'
   ],
-  authors: [{ name: 'erdem' }],
-  creator: 'erdem',
-  publisher: 'erdem',
+  authors: [{ name: 'Erdem Hacisalihoglu' }],
+  creator: 'Erdem Hacisalihoglu',
+  publisher: 'Erdem Hacisalihoglu',
   formatDetection: {
     email: false,
     address: false,
