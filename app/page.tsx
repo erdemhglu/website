@@ -1,0 +1,116 @@
+import HomeContent from "@/components/HomeContent"
+import { getAllPosts } from "@/lib/posts"
+
+export default async function PersonalWebsite() {
+  const blogPosts = await getAllPosts()
+  const githubRepos = [
+    {
+      name: "otobusum-anlik",
+      description: {
+        de: "Fork von metkm's plattformuebergreifender Transit-App, auf iOS-only mit Apple Maps umgestellt. Bietet Live-Bus-Tracking, Routenvisualisierung und Optimierung fuer iOS-Geraete.",
+        en: "Fork of metkm's multi-platform transit app, converted to iOS-only with Apple Maps. Features live bus tracking, route visualization, optimized for iOS devices.",
+      },
+      href: "https://github.com/erdemhglu/otobusum-anlik",
+      tags: ["TypeScript", "iOS", "React Native", "Expo"],
+    },
+    {
+      name: "naaltech/naal-org",
+      description: {
+        de: "Schuelerplattform des Nevzat Ayaz Anatolian High School. Interaktion, Club-Management und Zertifizierungssystem.",
+        en: "Nevzat Ayaz Anatolian High School student platform. Student interaction, club management and certification system.",
+      },
+      href: "https://github.com/naaltech/naal-org",
+      tags: ["Typescript", "Next.js", "Tailwind CSS", "Supabase"],
+    },
+    {
+      name: "monitserver",
+      description: {
+        de: "Leichtgewichtiges verteiltes Monitoring-System in Haskell, das Systemmetriken, Docker-Container und KVM-VMs ueber mehrere Server hinweg ueberwacht.",
+        en: "A lightweight distributed monitoring system written in Haskell that tracks system metrics, Docker containers, and KVM virtual machines across multiple servers.",
+      },
+      href: "https://github.com/erdemhglu/monitserver",
+      tags: ["Haskell", "Distributed Systems", "Monitoring"],
+    },
+    {
+      name: "iyzico/iyzipay-woocommerce-installment",
+      description: {
+        de: "Das iyzico-Installment-Plugin zeigt Ratenzahlungsoptionen mit iyzico-Berechnung auf WooCommerce-Produktseiten an.",
+        en: "The iyzico Installment plugin displays installment options to your customers using iyzico's installment calculation on WooCommerce product pages.",
+      },
+      href: "https://github.com/iyzico/iyzipay-woocommerce-installment",
+      tags: ["JavaScript", "WooCommerce", "Payment Gateway"],
+    },
+    {
+      name: "discord-google-directory-worker",
+      description: {
+        de: "Discord-Slash-Command-Bot auf Cloudflare Workers, integriert mit dem Google Workspace Admin SDK (Directory API).",
+        en: "A Discord slash-command bot deployed on Cloudflare Workers that integrates with Google Workspace Admin SDK (Directory API).",
+      },
+      href: "https://github.com/erdemhglu/discord-google-directory-worker",
+      tags: ["TypeScript", "Cloudflare Workers"],
+    },
+    {
+      name: "stwdo-roomchecker",
+      description: {
+        de: "Automatisches Room-Checking-System des Studierendenwerks Dortmund mit Telegram-Benachrichtigungen.",
+        en: "Studierendenwerk Dortmund automatic room checking system with Telegram notifications.",
+      },
+      href: "https://github.com/erdemhglu/stwdo-roomchecker",
+      tags: ["JavaScript"],
+    },
+    {
+      name: "nasdaq-visualiser",
+      description: {
+        de: "Datenanalyse mit historischen NASDAQ-Daten.",
+        en: "Doing some data analysis using historical data from NASDAQ.",
+      },
+      href: "https://github.com/erdemhglu/nasdaq-visualiser",
+      tags: ["Python", "Jupyter Notebook", "Data Analysis"],
+    },
+  ]
+
+  const projectGroups = [
+    {
+      name: "AgacMaketi.com",
+      website: "https://agacmaketi.com",
+      description: {
+        de: "Entwicklung eines WooCommerce-basierten E-Commerce-Webshops fuer den Online-Verkauf von Modellbaeumen. Integration der iyzico-Zahlungsinfrastruktur einschliesslich Implementierung des offiziellen WooCommerce-Zahlungsplugins. Funktionale Einschraenkungen des Plugins wurden durch zusaetzliche Erweiterungen und individuelle Konfigurationen behoben, um einen sicheren und reibungslosen Zahlungsprozess zu gewaehrleisten.",
+        en: "Built a WooCommerce-based e-commerce shop for selling model trees online. Integrated iyzico payments, including the official WooCommerce payment plugin. Addressed plugin limitations with custom extensions and configuration to ensure a secure, smooth checkout flow.",
+      },
+      photos: [
+        { src: "https://i.ibb.co/Ng95rSBc/agacmaketi1.png", alt: "Homepage", title: "Homepage" },
+        { src: "https://i.ibb.co/mCTGp0yL/agacmaketi2-1.png", alt: "Product List", title: "Product List" },
+        { src: "https://i.ibb.co/cSV8MXxT/agacmaketi4.png", alt: "Product Page", title: "Product Page" },
+        { src: "https://i.ibb.co/F4z5nQzD/agacmaketi3.png", alt: "Login / Register", title: "Login / Register" },
+        { src: "https://i.ibb.co/jkP9p8Pg/agacmaketi5.png", alt: "Shopping Cart", title: "Shopping Cart" },
+        { src: "https://i.ibb.co/YFY5Yyn1/agacmaketi6-1.png", alt: "Payment", title: "Payment" },
+      ],
+    },
+    {
+      name: "ISPM-15 Computergestuetztes Automatisierungssystem fuer Waermebehandlungsoefen",
+      description: {
+        de: "Entwicklung eines spezialisierten Ueberwachungs- und Dokumentationssystems fuer ISPM-15-Waermebehandlungsprozesse. Da es in der Branche kein richtlinienkonformes Programm fuer die Rueckverfolgbarkeit des Waermebehandlungsprozesses von Holzverpackungen gab, wurde das System konzipiert, um diese Luecke zu schliessen. Es wird derzeit von mehr als 10 Unternehmen in der Branche aktiv genutzt. Die Anwendung zeichnet sich durch eine nahtlose HMI-Integration aus, die das Echtzeit-Auslesen von Thermostatdaten direkt aus Delta HMI-Steuerungen ermoeglicht. Zur Gewaehrleistung hoechster Datenintegritaet wurde eine robuste SQL-Datenbankstruktur implementiert, die eine manipulationssichere Speicherung aller Sensordaten waehrend des gesamten Prozesses garantiert. Ein besonderer Schwerpunkt liegt auf der erweiterten Berichterstattung: Das System erstellt automatisch QR-kodierte Berichte, in die Operatoren zusaetzlich Videobeweise und Bilder des Prozesses direkt verknuepfen koennen, um die Transparenz zu maximieren. Die gesamte Loesung wurde mit Tauri und Tailwind CSS entwickelt, was eine leichtgewichtige, performante Desktop-Performance mit einer modernen, benutzerfreundlichen Oberflaeche vereint.",
+        en: "Built a specialized monitoring and documentation system for ISPM-15 heat-treatment processes. The system fills an industry gap by providing compliant traceability for wood packaging heat treatment and is used by 10+ companies. It includes seamless HMI integration for real-time thermostat data from Delta HMI controllers and a robust SQL database that ensures tamper-proof storage of all sensor data. Reporting is enhanced with automatic QR-coded reports where operators can link videos and images for full transparency. The solution was built with Tauri and Tailwind CSS for lightweight, high-performance desktop use and a modern, user-friendly interface.",
+      },
+      photos: [],
+    },
+    {
+      name: "Eytrix",
+      description: {
+        de: "KI-gestuetzte Videoueberwachung fuer Behoerden & Unternehmen",
+        en: "AI-powered video surveillance for public agencies and companies",
+      },
+      photos: [
+        { src: "https://i.ibb.co/cXYYGgfg/eytrix1.png", alt: "Eytrix 1", title: "Eytrix 1" },
+        { src: "https://i.ibb.co/HwcgRrT/eytrix2.png", alt: "Eytrix 2", title: "Eytrix 2" },
+        { src: "https://i.ibb.co/VpHGFN11/eytrix3.png", alt: "Eytrix 3", title: "Eytrix 3" },
+        { src: "https://i.ibb.co/Y70DVPRr/eytrix4.png", alt: "Eytrix 4", title: "Eytrix 4" },
+        { src: "https://i.ibb.co/HpxtxmFX/eytrix5.png", alt: "Eytrix 5", title: "Eytrix 5" },
+        { src: "https://i.ibb.co/WNLdgzXK/eytrix6.png", alt: "Eytrix 6", title: "Eytrix 6" },
+        { src: "https://i.ibb.co/Txx5SLxY/eytrix7.png", alt: "Eytrix 7", title: "Eytrix 7" },
+      ],
+    },
+  ]
+
+  return <HomeContent posts={blogPosts} repos={githubRepos} groups={projectGroups} />
+}

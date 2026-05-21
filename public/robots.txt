@@ -1,0 +1,13 @@
+User-agent: *
+Allow: /
+
+# Prevent image indexing
+Disallow: /*.png$
+Disallow: /*.jpg$
+Disallow: /*.jpeg$
+Disallow: /*.gif$
+Disallow: /*.webp$
+Disallow: /*.svg$
+
+# Sitemap location (update with your actual domain)
+Sitemap: https://erdem.hacisalihoglu.eu/sitemap.xml
