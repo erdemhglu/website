@@ -94,22 +94,6 @@ export default async function PersonalWebsite() {
       },
       photos: [],
     },
-    {
-      name: "Eytrix",
-      description: {
-        de: "KI-gestuetzte Videoueberwachung fuer Behoerden & Unternehmen",
-        en: "AI-powered video surveillance for public agencies and companies",
-      },
-      photos: [
-        { src: "https://i.ibb.co/cXYYGgfg/eytrix1.png", alt: "Eytrix 1", title: "Eytrix 1" },
-        { src: "https://i.ibb.co/HwcgRrT/eytrix2.png", alt: "Eytrix 2", title: "Eytrix 2" },
-        { src: "https://i.ibb.co/VpHGFN11/eytrix3.png", alt: "Eytrix 3", title: "Eytrix 3" },
-        { src: "https://i.ibb.co/Y70DVPRr/eytrix4.png", alt: "Eytrix 4", title: "Eytrix 4" },
-        { src: "https://i.ibb.co/HpxtxmFX/eytrix5.png", alt: "Eytrix 5", title: "Eytrix 5" },
-        { src: "https://i.ibb.co/WNLdgzXK/eytrix6.png", alt: "Eytrix 6", title: "Eytrix 6" },
-        { src: "https://i.ibb.co/Txx5SLxY/eytrix7.png", alt: "Eytrix 7", title: "Eytrix 7" },
-      ],
-    },
   ]
 
   return <HomeContent posts={blogPosts} repos={githubRepos} groups={projectGroups} />
