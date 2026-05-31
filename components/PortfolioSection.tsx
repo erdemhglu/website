@@ -174,8 +174,8 @@ export default function PortfolioSection({ repos, groups }: PortfolioSectionProp
                             )}
                           </div>
                           <div className="mt-2 space-y-1">
-                            <div className="flex items-center justify-between gap-2">
-                              <span className="text-sm text-gray-700 dark:text-gray-300">
+                            <div className="flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between sm:gap-2">
+                              <span className="text-sm text-gray-700 dark:text-gray-300 break-words leading-snug">
                                 {group.name}
                               </span>
                               {group.closedSource && (
@@ -217,7 +217,7 @@ export default function PortfolioSection({ repos, groups }: PortfolioSectionProp
           role="dialog"
           aria-modal="true"
         >
-          <div className="relative w-full max-w-4xl rounded-lg bg-white dark:bg-gray-900 p-6">
+          <div className="relative w-full max-w-4xl rounded-lg bg-white dark:bg-gray-900 p-6 max-h-[90vh] flex flex-col">
             <button
               type="button"
               onClick={() => setActiveGroupIndex(null)}
@@ -225,46 +225,48 @@ export default function PortfolioSection({ repos, groups }: PortfolioSectionProp
             >
               {text.close}
             </button>
-            <h4 className="text-lg font-medium text-gray-900 dark:text-white mb-4">
-              {groups[activeGroupIndex].name}
-            </h4>
-            {groups[activeGroupIndex].description && (
-              <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
-                {groups[activeGroupIndex].description}
-              </p>
-            )}
-            {groups[activeGroupIndex].website && (
-              <a
-                href={groups[activeGroupIndex].website}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex text-xs text-blue-600 dark:text-blue-400 hover:underline mb-4"
-              >
-                {text.website}
-              </a>
-            )}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-h-[70vh] overflow-y-auto pr-1">
-              {groups[activeGroupIndex].photos.map((photo) => (
-                <figure key={photo.src} className="space-y-2">
-                  <button
-                    type="button"
-                    onClick={() => setActivePhoto(photo)}
-                    className="block w-full"
-                  >
-                    <div className="aspect-[4/3] overflow-hidden rounded-md border border-gray-200 dark:border-gray-800 bg-gray-100 dark:bg-gray-800">
-                      <img
-                        src={photo.src}
-                        alt={photo.alt}
-                        className="h-full w-full object-cover"
-                        loading="lazy"
-                      />
-                    </div>
-                  </button>
-                  <figcaption className="text-xs text-gray-600 dark:text-gray-400">
-                    {photo.title}
-                  </figcaption>
-                </figure>
-              ))}
+            <div className="flex-1 overflow-y-auto pr-1">
+              <h4 className="text-lg font-medium text-gray-900 dark:text-white mb-4 break-words">
+                {groups[activeGroupIndex].name}
+              </h4>
+              {groups[activeGroupIndex].description && (
+                <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
+                  {groups[activeGroupIndex].description}
+                </p>
+              )}
+              {groups[activeGroupIndex].website && (
+                <a
+                  href={groups[activeGroupIndex].website}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex text-xs text-blue-600 dark:text-blue-400 hover:underline mb-4"
+                >
+                  {text.website}
+                </a>
+              )}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {groups[activeGroupIndex].photos.map((photo) => (
+                  <figure key={photo.src} className="space-y-2">
+                    <button
+                      type="button"
+                      onClick={() => setActivePhoto(photo)}
+                      className="block w-full"
+                    >
+                      <div className="aspect-[4/3] overflow-hidden rounded-md border border-gray-200 dark:border-gray-800 bg-gray-100 dark:bg-gray-800">
+                        <img
+                          src={photo.src}
+                          alt={photo.alt}
+                          className="h-full w-full object-cover"
+                          loading="lazy"
+                        />
+                      </div>
+                    </button>
+                    <figcaption className="text-xs text-gray-600 dark:text-gray-400">
+                      {photo.title}
+                    </figcaption>
+                  </figure>
+                ))}
+              </div>
             </div>
           </div>
         </div>
@@ -276,7 +278,7 @@ export default function PortfolioSection({ repos, groups }: PortfolioSectionProp
           role="dialog"
           aria-modal="true"
         >
-          <div className="relative w-full max-w-5xl">
+          <div className="relative w-full max-w-5xl max-h-[90vh]">
             <button
               type="button"
               onClick={() => setActivePhoto(null)}
@@ -288,7 +290,7 @@ export default function PortfolioSection({ repos, groups }: PortfolioSectionProp
               <img
                 src={activePhoto.src}
                 alt={activePhoto.alt}
-                className="h-auto w-full object-contain"
+                className="h-auto w-full max-h-[85vh] object-contain"
               />
             </div>
           </div>

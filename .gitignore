@@ -1,0 +1,25 @@
+node_modules/
+.next/
+out/
+dist/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Local env files
+.env
+.env.*.local
+
+# Vercel
+.vercel/
+
+# Turbo
+.turbo/
+
+# OS files
+.DS_Store
+Thumbs.db
+package-lock.json

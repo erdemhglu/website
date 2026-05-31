@@ -28,17 +28,17 @@ type HomeContentProps = {
 const copy = {
   de: {
     roles: {
-      radio: "Radioamateur",
+      radio: "Funkamateur",
       developer: "Softwareentwickler",
     },
     about: "Bachelorstudent der Informatik mit starkem Interesse an Amateurfunk, Leiterplatten-Design (PCB) sowie Web- und Systemprogrammierung.",
   },
   en: {
     roles: {
-      radio: "Ham radio operator",
+      radio: "Amateur radio operator",
       developer: "Software developer",
     },
-    about: "Computer science undergraduate with a strong interest in ham radio, PCB design, and web and systems programming.",
+    about: "A computer science undergraduate with a strong interest in amateur radio, PCB design, web development, and systems programming.",
   },
 } satisfies Record<Language, {
   roles: { radio: string; developer: string }
