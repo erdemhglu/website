@@ -77,7 +77,7 @@ export default function HomeContent({ posts, repos, groups }: HomeContentProps) 
               <span>{currentCopy.roles.radio}</span>
               <span className="inline-flex items-center justify-center gap-2 px-3 py-1 border border-gray-200 dark:border-gray-800 rounded-md text-xs text-gray-600 dark:text-gray-400">
                 <Radio className="h-3.5 w-3.5" aria-hidden="true" />
-                <span>DL/TA2EDH</span>
+                <span><a href="https://ans.bundesnetzagentur.de/Amateurfunk/Rufzeichen.aspx" target="_blank" rel="noopener noreferrer">DJ1EH</a></span>
               </span>
               <span>&amp; {currentCopy.roles.developer}</span>
             </div>
