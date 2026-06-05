@@ -62,7 +62,12 @@ export default function HomeContent({ posts, repos, groups }: HomeContentProps) 
 
   return (
     <div className="h-screen overflow-y-auto snap-y snap-mandatory scroll-smooth bg-white dark:bg-black text-gray-900 dark:text-white font-mono transition-colors">
-      <div className="fixed top-6 right-6 z-10 flex items-center gap-2">
+      <div className="fixed top-6 right-6 z-10 hidden items-center gap-2 sm:flex">
+        <LanguageToggle />
+        <ThemeToggle />
+      </div>
+
+      <div className="fixed top-3 right-3 z-10 flex flex-col items-end gap-2 sm:hidden">
         <LanguageToggle />
         <ThemeToggle />
       </div>
