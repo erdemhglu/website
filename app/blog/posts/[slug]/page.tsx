@@ -20,17 +20,17 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
   return {
     title: `${post.title}`,
-    creator: 'Erdem Hacisalihoglu',
-    publisher: 'Erdem Hacisalihoglu',
+    creator: 'Erdem Hacısalihoğlu',
+    publisher: 'Erdem Hacısalihoğlu',
     description: post.excerpt,
     keywords: post.tags,
-    authors: [{ name: "Erdem Hacisalihoglu" }],
+    authors: [{ name: "Erdem Hacısalihoğlu" }],
     openGraph: {
       title: post.title,
       description: post.excerpt,
       type: "article",
       publishedTime: post.date,
-      authors: ["Erdem Hacisalihoglu"],
+      authors: ["Erdem Hacısalihoğlu"],
       tags: post.tags,
     },
     twitter: {

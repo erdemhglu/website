@@ -2,8 +2,8 @@ import { MetadataRoute } from 'next'
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: 'Erdem Hacisalihoglu',
-    short_name: 'Erdem',
+    name: 'Erdem Hacısalihoğlu',
+    short_name: 'Erdem Hacısalihoğlu',
     description: 'Radioamateur & Softwareentwickler',
     start_url: '/',
     display: 'standalone',

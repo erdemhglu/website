@@ -1,8 +1,7 @@
 "use client"
 
-import { useState } from "react"
 import BlogPreview from "@/components/BlogPreview"
-import PortfolioSection, { GithubRepo, ProjectGroup } from "@/components/PortfolioSection"
+import PortfolioSection, { type GithubRepo, type ProjectGroup } from "@/components/PortfolioSection"
 import { Post } from "@/lib/posts"
 import { useLanguage } from "@/components/LanguageProvider"
 
@@ -15,63 +14,41 @@ type HomeSectionsProps = {
 }
 
 export default function HomeSections({ posts, repos, groups }: HomeSectionsProps) {
-  const [activeSection, setActiveSection] = useState<ActiveSection>(null)
   const { language } = useLanguage()
 
   const copy = {
     de: {
-      blogOpen: "Blog lesen",
-      blogClose: "Blogbeitraege ausblenden",
-      portfolio: "Portfolio",
-      portfolioClose: "Portfolio ausblenden",
+      blogHeading: "Blog",
+      blogSub: "Neueste Beitraege",
     },
     en: {
-      blogOpen: "Read the blog",
-      blogClose: "Hide blog posts",
-      portfolio: "Portfolio",
-      portfolioClose: "Hide portfolio",
+      blogHeading: "Blog",
+      blogSub: "Recent posts",
     },
   } as const
 
   const text = copy[language]
 
-  const toggleSection = (section: ActiveSection) => {
-    setActiveSection((current) => (current === section ? null : section))
-  }
-
   return (
-    <div className="space-y-6">
-      <div className="flex flex-wrap justify-center gap-3">
-        <button
-          type="button"
-          onClick={() => toggleSection("blog")}
-          className={`px-6 py-2 border border-gray-300 dark:border-gray-700 rounded-md text-sm font-light text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-900 hover:text-gray-900 dark:hover:text-white transition-all duration-200 ${
-            activeSection === "blog" ? "bg-gray-50 dark:bg-gray-900" : ""
-          }`}
-        >
-          {activeSection === "blog" ? text.blogClose : text.blogOpen}
-        </button>
-        <button
-          type="button"
-          onClick={() => toggleSection("portfolio")}
-          className={`px-6 py-2 border border-gray-300 dark:border-gray-700 rounded-md text-sm font-light text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-900 hover:text-gray-900 dark:hover:text-white transition-all duration-200 ${
-            activeSection === "portfolio" ? "bg-gray-50 dark:bg-gray-900" : ""
-          }`}
-        >
-          {activeSection === "portfolio" ? text.portfolioClose : text.portfolio}
-        </button>
-      </div>
+    <div className="space-y-0">
+      <section className="min-h-screen snap-start flex items-center">
+        <div className="w-full px-4">
+          <PortfolioSection repos={repos} groups={groups} />
+        </div>
+      </section>
 
-      {activeSection === "portfolio" && (
-        <PortfolioSection repos={repos} groups={groups} />
-      )}
+      <section id="blog" className="min-h-screen snap-start flex items-center border-t border-gray-200 dark:border-gray-800">
+        <div className="w-full px-4">
+          <div className="mb-6">
+            <h2 className="text-xl md:text-2xl font-light text-gray-900 dark:text-white">{text.blogHeading}</h2>
+            <p className="text-sm text-gray-500 dark:text-gray-400 font-light">{text.blogSub}</p>
+          </div>
 
-      <BlogPreview
-        posts={posts}
-        isExpanded={activeSection === "blog"}
-        onToggle={() => toggleSection("blog")}
-        showToggleButton={false}
-      />
+          <div>
+            <BlogPreview posts={posts} isExpanded={true} showToggleButton={false} />
+          </div>
+        </div>
+      </section>
     </div>
   )
 }

@@ -4,19 +4,19 @@ import BlogHeader from "@/components/BlogHeader"
 import { Metadata } from "next"
 
 export const metadata: Metadata = {
-  title: "Blog | Erdem Hacisalihoglu",
+  title: "Blog | Erdem Hacısalihoğlu",
   description: "Artikel über Algorithmen, Programmiersprachen, Typsysteme und Softwareentwicklung",
-  creator: 'Erdem Hacisalihoglu',
-  publisher: 'Erdem Hacisalihoglu',
+  creator: 'Erdem Hacısalihoğlu',
+  publisher: 'Erdem Hacısalihoğlu',
   keywords: ["algorithmen", "programmierung", "softwareentwicklung", "datenstrukturen", "typsysteme", "informatik"],
   openGraph: {
-    title: "Blog | Erdem Hacisalihoglu",
+    title: "Blog | Erdem Hacısalihoğlu",
     description: "Artikel über Algorithmen, Programmiersprachen, Typsysteme und Softwareentwicklung",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Blog | Erdem Hacisalihoglu",
+    title: "Blog | Erdem Hacısalihoğlu",
     description: "Artikel über Algorithmen, Programmiersprachen, Typsysteme und Softwareentwicklung.",
   },
 }

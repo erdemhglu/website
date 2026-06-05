@@ -87,7 +87,10 @@ export default async function PersonalWebsite() {
       ],
     },
     {
-      name: "ISPM-15 Computergestuetztes Automatisierungssystem fuer Waermebehandlungsoefen",
+      name: {
+        de: "ISPM-15 Computergestuetztes Automatisierungssystem fuer Waermebehandlungsoefen",
+        en: "ISPM-15 Computerized Automation System for Heat-Treatment Ovens",
+      },
       description: {
         de: "Entwicklung eines spezialisierten Ueberwachungs- und Dokumentationssystems fuer ISPM-15-Waermebehandlungsprozesse. Da es in der Branche kein richtlinienkonformes Programm fuer die Rueckverfolgbarkeit des Waermebehandlungsprozesses von Holzverpackungen gab, wurde das System konzipiert, um diese Luecke zu schliessen. Es wird derzeit von mehr als 10 Unternehmen in der Branche aktiv genutzt. Die Anwendung zeichnet sich durch eine nahtlose HMI-Integration aus, die das Echtzeit-Auslesen von Thermostatdaten direkt aus Delta HMI-Steuerungen ermoeglicht. Zur Gewaehrleistung hoechster Datenintegritaet wurde eine robuste SQL-Datenbankstruktur implementiert, die eine manipulationssichere Speicherung aller Sensordaten waehrend des gesamten Prozesses garantiert. Ein besonderer Schwerpunkt liegt auf der erweiterten Berichterstattung: Das System erstellt automatisch QR-kodierte Berichte, in die Operatoren zusaetzlich Videobeweise und Bilder des Prozesses direkt verknuepfen koennen, um die Transparenz zu maximieren. Die gesamte Loesung wurde mit Tauri und Tailwind CSS entwickelt, was eine leichtgewichtige, performante Desktop-Performance mit einer modernen, benutzerfreundlichen Oberflaeche vereint.",
         en: "Built a specialized monitoring and documentation system for ISPM-15 heat-treatment processes. The system fills an industry gap by providing compliant traceability for wood packaging heat treatment and is used by 10+ companies. It includes seamless HMI integration for real-time thermostat data from Delta HMI controllers and a robust SQL database that ensures tamper-proof storage of all sensor data. Reporting is enhanced with automatic QR-coded reports where operators can link videos and images for full transparency. The solution was built with Tauri and Tailwind CSS for lightweight, high-performance desktop use and a modern, user-friendly interface.",

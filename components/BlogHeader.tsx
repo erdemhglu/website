@@ -35,7 +35,7 @@ export default function BlogHeader({ showRss = false }: BlogHeaderProps) {
             href="/blog"
             className="text-lg md:text-xl font-medium hover:text-gray-600 dark:hover:text-gray-300 transition-colors font-mono"
           >
-            Erdem Hacisalihoglu
+            Erdem Hacısalihoğlu
           </Link>
           <div className="flex items-center space-x-2 md:space-x-4">
             <nav className="flex items-center space-x-4 md:space-x-8 text-xs md:text-sm font-mono">

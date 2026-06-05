@@ -6,7 +6,7 @@ import { LanguageProvider } from '@/components/LanguageProvider'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'Erdem Hacisalihoglu',
+  title: 'Erdem Hacısalihoğlu',
   description: 'Bachelorstudent der Informatik mit starkem Interesse an Amateurfunk, Leiterplatten-Design (PCB) sowie Web- und Systemprogrammierung.',
   keywords: [
     'erdem',
@@ -19,9 +19,9 @@ export const metadata: Metadata = {
     'web programming',
     'system programming'
   ],
-  authors: [{ name: 'Erdem Hacisalihoglu' }],
-  creator: 'Erdem Hacisalihoglu',
-  publisher: 'Erdem Hacisalihoglu',
+  authors: [{ name: 'Erdem Hacısalihoğlu' }],
+  creator: 'Erdem Hacısalihoğlu',
+  publisher: 'Erdem Hacısalihoğlu',
   formatDetection: {
     email: false,
     address: false,
@@ -32,16 +32,16 @@ export const metadata: Metadata = {
     canonical: '/',
   },
   openGraph: {
-    title: 'Erdem Hacisalihoglu',
+    title: 'Erdem Hacısalihoğlu',
     description: 'Bachelorstudent der Informatik mit starkem Interesse an Amateurfunk, Leiterplatten-Design (PCB) sowie Web- und Systemprogrammierung.',
     url: 'https://erdem.hacisalihoglu.eu', // Update with your actual domain
-    siteName: 'Erdem Hacisalihoglu',
+    siteName: 'Erdem Hacısalihoğlu',
     locale: 'de_DE',
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Erdem Hacisalihoglu',
+    title: 'Erdem Hacısalihoğlu',
     description: 'Bachelorstudent der Informatik mit starkem Interesse an Amateurfunk, Leiterplatten-Design (PCB) sowie Web- und Systemprogrammierung.',
   },
   robots: {
@@ -78,7 +78,7 @@ html {
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "Person",
-              "name": "Erdem Hacisalihoglu",
+              "name": "Erdem Hacısalihoğlu",
               "jobTitle": "Software Developer",
               "description": "Bachelorstudent der Informatik mit starkem Interesse an Amateurfunk, Leiterplatten-Design (PCB) sowie Web- und Systemprogrammierung.",
               "url": "https://erdem.hacisalihoglu.eu", // Update with your actual domain
@@ -97,7 +97,7 @@ html {
           }}
         />
       </head>
-      <body>
+      <body suppressHydrationWarning>
         <ThemeProvider
           attribute="class"
           defaultTheme="light"
