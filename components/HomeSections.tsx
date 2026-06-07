@@ -31,8 +31,8 @@ export default function HomeSections({ posts, repos, groups }: HomeSectionsProps
 
   return (
     <div className="space-y-0">
-      <section className="min-h-[100svh] snap-start flex items-center py-6 sm:py-8">
-        <div className="w-full px-4">
+      <section className="min-h-[100svh] snap-start flex items-center py-4 sm:py-8 md:h-auto md:min-h-[100svh] md:overflow-visible">
+        <div className="w-full px-4 h-full min-h-0 md:h-auto">
           <PortfolioSection repos={repos} groups={groups} />
         </div>
       </section>

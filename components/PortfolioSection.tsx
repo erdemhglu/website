@@ -74,40 +74,40 @@ export default function PortfolioSection({ repos, groups }: PortfolioSectionProp
     : ""
 
   return (
-    <section className="pt-6">
-      <div className="text-left space-y-6">
+    <section className="pt-4 sm:pt-6">
+      <div className="text-left space-y-4 sm:space-y-6">
         <div>
           <h2 className="text-xl md:text-2xl font-light text-gray-900 dark:text-white">{text.heading}</h2>
           <p className="text-sm text-gray-500 dark:text-gray-400 font-light">{text.subheading}</p>
         </div>
 
-        <div className="space-y-6">
+        <div className="space-y-4 sm:space-y-6">
           {/* GitHub Repositories */}
           <div className="p-0">
-            <h3 className="text-lg font-light mb-4">{text.repoHeading}</h3>
+            <h3 className="text-lg font-light mb-3 sm:mb-4">{text.repoHeading}</h3>
             {repos.length === 0 ? (
               <p className="text-sm text-gray-500 dark:text-gray-400">{text.repoEmpty}</p>
             ) : (
-              <div className="flex items-stretch gap-6 overflow-x-auto pb-2 snap-x snap-mandatory">
+                <div className="flex w-full max-w-full min-w-0 gap-4 overflow-x-auto pb-2 snap-x snap-mandatory overscroll-x-contain md:gap-6">
                 {repos.map((repo) => {
                   return (
                     <article
                       key={repo.href}
-                      className="min-w-[320px] max-w-[420px] w-full snap-start flex-shrink-0"
+                        className="w-[82vw] max-w-[420px] min-w-[220px] flex-shrink-0 snap-start sm:w-[360px] sm:min-w-[320px]"
                     >
                       <a
                         href={repo.href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="block w-full h-full rounded-md p-4 hover:bg-gray-50 dark:hover:bg-gray-900 transition-colors"
+                          className="block w-full h-full rounded-md p-3 sm:p-4 hover:bg-gray-50 dark:hover:bg-gray-900 transition-colors"
                       >
                         <div className="flex items-center justify-between gap-3">
                           <span className="text-base font-medium text-gray-900 dark:text-white">{repo.name}</span>
                           <span className="text-xs text-gray-400">github.com</span>
                         </div>
-                        <p className="text-sm text-gray-600 dark:text-gray-400 mt-2 line-clamp-3">{repo.description || text.repoNoDescription}</p>
+                        <p className="text-sm text-gray-600 dark:text-gray-400 mt-2 line-clamp-2 sm:line-clamp-3">{repo.description || text.repoNoDescription}</p>
                         {repo.tags.length > 0 && (
-                          <div className="flex flex-wrap gap-2 mt-3">
+                          <div className="flex flex-wrap gap-2 mt-2 sm:mt-3">
                             {repo.tags.map((tag) => (
                               <span key={tag} className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-xs rounded text-gray-600 dark:text-gray-400">{tag}</span>
                             ))}
@@ -133,12 +133,12 @@ export default function PortfolioSection({ repos, groups }: PortfolioSectionProp
             {groups.length === 0 ? (
               <p className="text-sm text-gray-500 dark:text-gray-400 mt-3">{text.emptyGroups}</p>
             ) : (
-              <div className="mt-4">
-                <div className="flex gap-6 overflow-x-auto pb-2 snap-x snap-mandatory sm:grid sm:grid-cols-2 lg:grid-cols-3">
+              <div className="mt-3 sm:mt-4">
+                <div className="flex w-full max-w-full min-w-0 gap-4 overflow-x-auto pb-2 snap-x snap-mandatory overscroll-x-contain sm:gap-6 sm:grid sm:grid-cols-2 lg:grid-cols-3 sm:overflow-visible sm:pb-0 sm:snap-none">
                   {groups.map((group, index) => {
                     const displayName = typeof group.name === 'string' ? group.name : (group.name as Record<string,string>)[language] || Object.values(group.name)[0]
                     return (
-                      <article key={displayName} className="min-w-[280px] w-full snap-start sm:min-w-0">
+                      <article key={displayName} className="w-[82vw] max-w-[340px] min-w-[220px] flex-shrink-0 snap-start sm:w-full sm:max-w-none sm:min-w-0">
                         <div className="w-full">
                           <button type="button" onClick={() => setActiveGroupIndex(index)} className="block w-full text-left">
                             <div className="aspect-[16/9] overflow-hidden rounded-md bg-gray-100 dark:bg-gray-800">
@@ -154,7 +154,7 @@ export default function PortfolioSection({ repos, groups }: PortfolioSectionProp
                                 <span className="text-sm text-gray-700 dark:text-gray-300 break-words leading-snug">{displayName}</span>
                                 {group.closedSource && <span className="text-[10px] text-gray-500 dark:text-gray-400">{text.closedSourceTag}</span>}
                               </div>
-                              {group.description && <p className="text-xs text-gray-600 dark:text-gray-400 line-clamp-3">{group.description}</p>}
+                              {group.description && <p className="text-xs text-gray-600 dark:text-gray-400 line-clamp-2 sm:line-clamp-3">{group.description}</p>}
                             </div>
                           </button>
 
