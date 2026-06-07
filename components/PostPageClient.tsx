@@ -32,7 +32,7 @@ export default function PostPageClient({ post, postUrl }: PostPageClientProps) {
   const text = copy[language]
 
   return (
-    <div className="min-h-screen bg-white dark:bg-black text-gray-900 dark:text-white transition-colors">
+    <div className="min-h-[100svh] overflow-x-hidden bg-white dark:bg-black text-gray-900 dark:text-white transition-colors">
       <ReadingProgress />
       <BlogHeader />
 

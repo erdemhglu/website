@@ -31,13 +31,13 @@ export default function HomeSections({ posts, repos, groups }: HomeSectionsProps
 
   return (
     <div className="space-y-0">
-      <section className="min-h-screen snap-start flex items-center">
+      <section className="min-h-[100svh] snap-start flex items-center py-6 sm:py-8">
         <div className="w-full px-4">
           <PortfolioSection repos={repos} groups={groups} />
         </div>
       </section>
 
-      <section id="blog" className="min-h-screen snap-start flex items-center border-t border-gray-200 dark:border-gray-800">
+      <section id="blog" className="min-h-[100svh] snap-start flex items-center border-t border-gray-200 dark:border-gray-800 py-6 sm:py-8">
         <div className="w-full px-4">
           <div className="mb-6">
             <h2 className="text-xl md:text-2xl font-light text-gray-900 dark:text-white">{text.blogHeading}</h2>

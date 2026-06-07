@@ -25,7 +25,7 @@ export default async function BlogPage() {
   const blogPosts = await getAllPosts()
 
   return (
-    <div className="min-h-screen bg-white dark:bg-black text-gray-900 dark:text-white transition-colors">
+    <div className="min-h-[100svh] overflow-x-hidden bg-white dark:bg-black text-gray-900 dark:text-white transition-colors">
       <BlogHeader showRss />
 
       {/* Main Content */}
