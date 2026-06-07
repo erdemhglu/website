@@ -17,22 +17,22 @@ export default function PostList({ posts }: PostListProps) {
 
   const copy = {
     de: {
-      heading: "Beitraege.",
-      searchPlaceholder: "Suche...",
+      heading: "Beitraege",
+      searchPlaceholder: "Suchen…",
       allTags: "Alle",
-      allLanguages: "Alle Sprachen",
-      emptySearch: (query: string) => `Keine Beitraege gefunden fuer "${query}"`,
-      emptyTag: (tag: string) => `Keine Beitraege mit dem Tag "${tag}" gefunden`,
+      allLanguages: "Alle",
+      emptySearch: (q: string) => `Keine Beitraege gefunden fuer „${q}"`,
+      emptyTag: (t: string) => `Keine Beitraege mit dem Tag „${t}"`,
       empty: "Keine Beitraege gefunden",
       locale: "de-DE",
     },
     en: {
-      heading: "Posts.",
-      searchPlaceholder: "Search...",
+      heading: "Posts",
+      searchPlaceholder: "Search…",
       allTags: "All",
-      allLanguages: "All languages",
-      emptySearch: (query: string) => `No posts found for "${query}"`,
-      emptyTag: (tag: string) => `No posts found with the tag "${tag}"`,
+      allLanguages: "All",
+      emptySearch: (q: string) => `No posts found for "${q}"`,
+      emptyTag: (t: string) => `No posts found with tag "${t}"`,
       empty: "No posts found",
       locale: "en-US",
     },
@@ -40,169 +40,100 @@ export default function PostList({ posts }: PostListProps) {
 
   const text = copy[language]
 
-  // Get all unique tags from posts
   const allTags = useMemo(() => {
     const tagSet = new Set<string>()
-    posts.forEach(post => {
-      post.tags.forEach(tag => tagSet.add(tag))
-    })
+    posts.forEach(post => post.tags.forEach(tag => tagSet.add(tag)))
     return Array.from(tagSet).sort()
   }, [posts])
 
   const filteredPosts = useMemo(() => {
     let filtered = posts
-
-    // Filter by language
-    if (selectedLanguage) {
-      filtered = filtered.filter(post => 
-        post.language === selectedLanguage
-      )
-    }
-
-    // Filter by selected tag
-    if (selectedTag) {
-      filtered = filtered.filter(post => 
-        post.tags.some(tag => tag === selectedTag)
-      )
-    }
-
-    // Filter by search query
+    if (selectedLanguage) filtered = filtered.filter(p => p.language === selectedLanguage)
+    if (selectedTag) filtered = filtered.filter(p => p.tags.some(t => t === selectedTag))
     if (searchQuery.trim()) {
-      const query = searchQuery.toLowerCase()
-      filtered = filtered.filter(
-        (post) =>
-          post.title.toLowerCase().includes(query) ||
-          post.excerpt.toLowerCase().includes(query) ||
-          post.tags.some((tag) => tag.toLowerCase().includes(query))
+      const q = searchQuery.toLowerCase()
+      filtered = filtered.filter(p =>
+        p.title.toLowerCase().includes(q) ||
+        p.excerpt.toLowerCase().includes(q) ||
+        p.tags.some(t => t.toLowerCase().includes(q))
       )
     }
-
     return filtered
   }, [posts, searchQuery, selectedTag, selectedLanguage])
 
+  const pill = (active: boolean) =>
+    `px-3 py-1 text-xs rounded-full border transition-colors font-sans ${
+      active
+        ? "bg-neutral-900 text-white border-neutral-900"
+        : "bg-white text-neutral-500 border-neutral-200 hover:border-neutral-400"
+    }`
+
   return (
     <>
-      <div className="mb-8">
-        <h1 className="text-2xl font-medium mb-4 text-gray-900 dark:text-white">{text.heading}</h1>
-        
-        {/* Search Input */}
-        <div className="mb-4">
-          <input 
-            type="text" 
-            placeholder={text.searchPlaceholder}
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            className="px-3 py-2 border border-gray-300 dark:border-gray-700 rounded text-sm w-full sm:w-64 focus:outline-none focus:ring-1 focus:ring-gray-400 dark:focus:ring-gray-500 bg-white dark:bg-gray-900 text-gray-900 dark:text-white"
-          />
+      {/* Section label */}
+      <div className="flex items-center gap-4 mb-10">
+        <span className="text-xs tracking-[0.2em] uppercase text-neutral-300 font-sans select-none">Writing</span>
+        <div className="flex-1 h-px bg-neutral-100" />
+      </div>
+
+      <h1 className="font-display text-3xl md:text-4xl text-neutral-900 mb-10">{text.heading}</h1>
+
+      {/* Filters */}
+      <div className="space-y-4 mb-10">
+        <input
+          type="text"
+          placeholder={text.searchPlaceholder}
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          className="px-4 py-2 border border-neutral-200 rounded-lg text-sm w-full sm:w-72 focus:outline-none focus:border-neutral-400 bg-white text-neutral-900 font-sans placeholder:text-neutral-300"
+        />
+
+        <div className="flex flex-wrap gap-2">
+          <button onClick={() => setSelectedTag(null)} className={pill(selectedTag === null)}>{text.allTags}</button>
+          {allTags.map(tag => (
+            <button key={tag} onClick={() => setSelectedTag(tag)} className={pill(selectedTag === tag)}>{tag}</button>
+          ))}
         </div>
 
-        {/* Tag Filter */}
-        <div className="mb-4">
-          <div className="flex flex-wrap gap-2">
-              <button
-              onClick={() => setSelectedTag(null)}
-              className={`px-3 py-1 text-xs rounded transition-colors ${
-                selectedTag === null
-                  ? 'bg-gray-900 dark:bg-white text-white dark:text-gray-900'
-                  : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700'
-              }`}
-            >
-              {text.allTags}
-            </button>
-            {allTags.map((tag) => (
-              <button
-                key={tag}
-                onClick={() => setSelectedTag(tag)}
-                className={`px-3 py-1 text-xs rounded transition-colors ${
-                  selectedTag === tag
-                    ? 'bg-gray-900 dark:bg-white text-white dark:text-gray-900'
-                    : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700'
-                }`}
-              >
-                {tag}
-              </button>
-            ))}
-          </div>
-        </div>
-
-        {/* Language Filter */}
-        <div className="mb-6">
-          <div className="flex flex-wrap gap-2">
-            <button
-              onClick={() => setSelectedLanguage(null)}
-              className={`px-3 py-1 text-xs rounded transition-colors ${
-                selectedLanguage === null
-                  ? 'bg-gray-900 dark:bg-white text-white dark:text-gray-900'
-                  : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700'
-              }`}
-            >
-              {text.allLanguages}
-            </button>
-            <button
-              onClick={() => setSelectedLanguage('en')}
-              className={`px-3 py-1 text-xs rounded transition-colors ${
-                selectedLanguage === 'en'
-                  ? 'bg-gray-900 dark:bg-white text-white dark:text-gray-900'
-                  : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700'
-              }`}
-            >
-              EN
-            </button>
-            <button
-              onClick={() => setSelectedLanguage('de')}
-              className={`px-3 py-1 text-xs rounded transition-colors ${
-                selectedLanguage === 'de'
-                  ? 'bg-gray-900 dark:bg-white text-white dark:text-gray-900'
-                  : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700'
-              }`}
-            >
-              DE
-            </button>
-          </div>
+        <div className="flex flex-wrap gap-2">
+          <button onClick={() => setSelectedLanguage(null)} className={pill(selectedLanguage === null)}>{text.allLanguages}</button>
+          <button onClick={() => setSelectedLanguage("en")} className={pill(selectedLanguage === "en")}>EN</button>
+          <button onClick={() => setSelectedLanguage("de")} className={pill(selectedLanguage === "de")}>DE</button>
         </div>
       </div>
 
-      {/* Posts List */}
-      <div className="space-y-6">
+      {/* Posts */}
+      <div className="divide-y divide-neutral-100">
         {filteredPosts.length === 0 ? (
-          <div className="text-gray-500 dark:text-gray-400 text-center py-8">
-            {searchQuery ? (
-              <>{text.emptySearch(searchQuery)}</>
-            ) : selectedTag ? (
-              <>{text.emptyTag(selectedTag)}</>
-            ) : (
-              <>{text.empty}</>
-            )}
-          </div>
+          <p className="text-neutral-400 text-sm font-sans py-8">
+            {searchQuery ? text.emptySearch(searchQuery) : selectedTag ? text.emptyTag(selectedTag) : text.empty}
+          </p>
         ) : (
-          filteredPosts.map((post) => (
-            <article key={post.slug} className="group">
-              <div className="flex flex-col sm:flex-row sm:items-start gap-2 sm:gap-4">
-                <time className="text-sm text-gray-500 dark:text-gray-400 font-mono shrink-0 sm:w-20">
-                  {new Date(post.date).toLocaleDateString(text.locale, { timeZone: "Europe/Berlin" })}
-                </time>
-                <div className="flex-1">
-                  <h2 className="text-lg font-medium mb-2">
-                    <Link 
-                      href={`/blog/posts/${post.slug}`} 
-                      className="hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
-                    >
+          filteredPosts.map((post, i) => (
+            <article key={post.slug} className="group py-6 first:pt-0">
+              <Link href={`/blog/posts/${post.slug}`} className="flex items-start gap-6 md:gap-10">
+                <span className="text-xs text-neutral-300 font-sans tabular-nums pt-1 select-none w-6 shrink-0">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <div className="flex-1 min-w-0">
+                  <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 sm:gap-4 mb-2">
+                    <h2 className="font-display text-lg text-neutral-900 group-hover:text-neutral-500 transition-colors">
                       {post.title}
-                    </Link>
-                  </h2>
-                  <div className="flex flex-wrap items-center gap-2 mb-2">
-                    {post.tags.map((tag) => (
-                      <span 
-                        key={tag} 
-                        className="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-xs rounded text-gray-700 dark:text-gray-300 whitespace-nowrap"
-                      >
-                        {tag.toLowerCase().replace(/\s+/g, ' ')}
+                    </h2>
+                    <time className="text-xs text-neutral-300 font-sans shrink-0">
+                      {new Date(post.date).toLocaleDateString(text.locale, { timeZone: "Europe/Berlin" })}
+                    </time>
+                  </div>
+                  <div className="flex flex-wrap items-center gap-3">
+                    <span className="text-xs text-neutral-400 font-sans">{post.readTime}</span>
+                    {post.tags.map(tag => (
+                      <span key={tag} className="text-[11px] text-neutral-400 font-sans border border-neutral-200 rounded-full px-2.5 py-0.5">
+                        {tag.toLowerCase()}
                       </span>
                     ))}
                   </div>
-                  <p className="text-sm text-gray-600 dark:text-gray-400">{post.readTime}</p>
                 </div>
-              </div>
+              </Link>
             </article>
           ))
         )}

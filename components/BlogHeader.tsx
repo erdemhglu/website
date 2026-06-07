@@ -2,7 +2,6 @@
 
 import Link from "next/link"
 import { Rss } from "lucide-react"
-import { ThemeToggle } from "@/components/ThemeToggle"
 import { LanguageToggle } from "@/components/LanguageToggle"
 import { useLanguage } from "@/components/LanguageProvider"
 
@@ -28,33 +27,30 @@ export default function BlogHeader({ showRss = false }: BlogHeaderProps) {
   const text = copy[language]
 
   return (
-    <header className="border-b border-gray-200 dark:border-gray-800 py-4 md:py-6">
+    <header className="border-b border-neutral-100 py-4 md:py-6">
       <div className="max-w-4xl mx-auto px-4 md:px-6">
         <div className="flex flex-col space-y-4 sm:flex-row sm:items-center sm:justify-between sm:space-y-0">
           <Link
-            href="/blog"
-            className="text-lg md:text-xl font-medium hover:text-gray-600 dark:hover:text-gray-300 transition-colors font-mono"
+            href="/"
+            className="text-lg md:text-xl font-display font-normal text-neutral-900 hover:text-neutral-600 transition-colors"
           >
             Erdem Hacısalihoğlu
           </Link>
           <div className="flex items-center space-x-2 md:space-x-4">
-            <nav className="flex items-center space-x-4 md:space-x-8 text-xs md:text-sm font-mono">
-              <Link href="/blog" className="hover:text-gray-600 dark:hover:text-gray-300 transition-colors">
+            <nav className="flex items-center space-x-4 md:space-x-8 text-xs md:text-sm font-sans text-neutral-500">
+              <Link href="/blog" className="hover:text-neutral-900 transition-colors">
                 {text.posts}
               </Link>
-              <Link href="/" className="hover:text-gray-600 dark:hover:text-gray-300 transition-colors">
+              <Link href="/" className="hover:text-neutral-900 transition-colors">
                 {text.site}
               </Link>
               {showRss && (
-                <Link href="/rss.xml" className="hover:text-gray-600 dark:hover:text-gray-300 transition-colors" aria-label={text.rssLabel}>
+                <Link href="/rss.xml" className="hover:text-neutral-900 transition-colors" aria-label={text.rssLabel}>
                   <Rss className="w-4 h-4" />
                 </Link>
               )}
             </nav>
-            <div className="flex items-center gap-2">
-              <LanguageToggle />
-              <ThemeToggle />
-            </div>
+            <LanguageToggle />
           </div>
         </div>
       </div>

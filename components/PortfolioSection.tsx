@@ -30,6 +30,36 @@ type PortfolioSectionProps = {
   groups: ProjectGroup[]
 }
 
+const tagColors: Record<string, string> = {
+  "TypeScript":          "bg-blue-50 text-blue-600 border-blue-200",
+  "JavaScript":          "bg-yellow-50 text-yellow-700 border-yellow-200",
+  "Python":              "bg-sky-50 text-sky-600 border-sky-200",
+  "Haskell":             "bg-violet-50 text-violet-600 border-violet-200",
+  "React Native":        "bg-cyan-50 text-cyan-600 border-cyan-200",
+  "React":               "bg-cyan-50 text-cyan-600 border-cyan-200",
+  "Next.js":             "bg-neutral-900 text-white border-neutral-900",
+  "Tailwind CSS":        "bg-teal-50 text-teal-600 border-teal-200",
+  "Supabase":            "bg-emerald-50 text-emerald-600 border-emerald-200",
+  "Cloudflare Workers":  "bg-orange-50 text-orange-600 border-orange-200",
+  "WooCommerce":         "bg-purple-50 text-purple-600 border-purple-200",
+  "Payment Gateway":     "bg-green-50 text-green-600 border-green-200",
+  "iOS":                 "bg-blue-50 text-blue-500 border-blue-200",
+  "Expo":                "bg-neutral-100 text-neutral-700 border-neutral-300",
+  "Jupyter Notebook":    "bg-orange-50 text-orange-600 border-orange-200",
+  "Data Analysis":       "bg-orange-50 text-orange-500 border-orange-200",
+  "Distributed Systems": "bg-indigo-50 text-indigo-600 border-indigo-200",
+  "Monitoring":          "bg-green-50 text-green-600 border-green-200",
+}
+
+function TagPill({ tag }: { tag: string }) {
+  const cls = tagColors[tag] ?? "bg-white text-neutral-400 border-neutral-200"
+  return (
+    <span className={`text-[11px] font-sans border rounded-full px-2.5 py-0.5 ${cls}`}>
+      {tag}
+    </span>
+  )
+}
+
 export default function PortfolioSection({ repos, groups }: PortfolioSectionProps) {
   const [activeGroupIndex, setActiveGroupIndex] = useState<number | null>(null)
   const [activePhoto, setActivePhoto] = useState<ProjectPhoto | null>(null)
@@ -37,29 +67,27 @@ export default function PortfolioSection({ repos, groups }: PortfolioSectionProp
 
   const copy = {
     de: {
-      heading: "Portfolio",
-      subheading: "GitHub-Repositories und Projektfotos.",
-      repoHeading: "GitHub-Repos",
+      heading: "Arbeit",
+      repoHeading: "Open Source",
       repoEmpty: "Keine Repositories gefunden.",
       repoNoDescription: "Keine Beschreibung vorhanden.",
-      website: "Website besuchen",
-      closedSource: "Closed-Source-Projekte",
+      website: "Website besuchen →",
+      closedSource: "Projekte",
       emptyGroups: "Lege Bilder in `public/portfolio` ab und trage sie in `projectGroups` ein.",
       noImage: "Kein Bild",
-      closedSourceTag: "Geschlossene Quelle",
+      closedSourceTag: "Closed Source",
       close: "Schliessen",
     },
     en: {
-      heading: "Portfolio",
-      subheading: "GitHub repositories and project photos.",
-      repoHeading: "GitHub repos",
+      heading: "Work",
+      repoHeading: "Open Source",
       repoEmpty: "No repositories found.",
       repoNoDescription: "No description available.",
-      website: "Visit website",
-      closedSource: "Closed-source projects",
+      website: "Visit website →",
+      closedSource: "Projects",
       emptyGroups: "Add images to `public/portfolio` and list them in `projectGroups`.",
       noImage: "No image",
-      closedSourceTag: "Closed source",
+      closedSourceTag: "Closed Source",
       close: "Close",
     },
   } as const
@@ -74,141 +102,229 @@ export default function PortfolioSection({ repos, groups }: PortfolioSectionProp
     : ""
 
   return (
-    <section className="pt-4 sm:pt-6">
-      <div className="text-left space-y-4 sm:space-y-6">
+    <section className="pt-8 sm:pt-12">
+
+      {/* Section label */}
+      <div className="flex items-center gap-4 mb-10">
+        <span className="text-xs tracking-[0.2em] uppercase text-neutral-300 font-sans select-none">01</span>
+        <div className="flex-1 h-px bg-neutral-100" />
+        <h2 className="text-xs tracking-[0.2em] uppercase text-neutral-400 font-sans">{text.heading}</h2>
+      </div>
+
+      <div className="space-y-16">
+
+        {/* ── GitHub repos ── */}
         <div>
-          <h2 className="text-xl md:text-2xl font-light text-gray-900 dark:text-white">{text.heading}</h2>
-          <p className="text-sm text-gray-500 dark:text-gray-400 font-light">{text.subheading}</p>
+          <h3 className="font-display text-2xl md:text-3xl text-neutral-900 mb-8">
+            {text.repoHeading}
+          </h3>
+
+          {repos.length === 0 ? (
+            <p className="text-sm text-neutral-400 font-sans">{text.repoEmpty}</p>
+          ) : (
+            <div className="flex gap-4 overflow-x-auto pb-3 snap-x snap-mandatory -mx-1 px-1">
+              {repos.map((repo, i) => (
+                <article key={repo.href} className="group snap-start shrink-0 w-72 border border-neutral-200 rounded-xl p-5 hover:border-neutral-400 hover:shadow-sm transition-all duration-200 bg-white">
+                  <a
+                    href={repo.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex flex-col h-full"
+                  >
+                    <div className="flex items-start justify-between gap-2 mb-3">
+                      <span className="font-display text-base text-neutral-900 group-hover:text-neutral-500 transition-colors leading-snug">
+                        {repo.name}
+                      </span>
+                      <span className="text-[10px] text-neutral-300 font-sans shrink-0 tabular-nums mt-0.5">
+                        {String(i + 1).padStart(2, "0")}
+                      </span>
+                    </div>
+                    <p className="text-xs text-neutral-500 font-sans leading-relaxed line-clamp-3 flex-1 mb-3">
+                      {repo.description || text.repoNoDescription}
+                    </p>
+                    {repo.tags.length > 0 && (
+                      <div className="flex flex-wrap gap-1.5">
+                        {repo.tags.map((tag) => <TagPill key={tag} tag={tag} />)}
+                      </div>
+                    )}
+                  </a>
+                  {repo.website && (
+                    <a
+                      href={repo.website}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mt-3 inline-flex text-xs text-neutral-400 hover:text-neutral-900 transition-colors font-sans"
+                    >
+                      {text.website}
+                    </a>
+                  )}
+                </article>
+              ))}
+            </div>
+          )}
         </div>
 
-        <div className="space-y-4 sm:space-y-6">
-          {/* GitHub Repositories */}
-          <div className="p-0">
-            <h3 className="text-lg font-light mb-3 sm:mb-4">{text.repoHeading}</h3>
-            {repos.length === 0 ? (
-              <p className="text-sm text-gray-500 dark:text-gray-400">{text.repoEmpty}</p>
-            ) : (
-                <div className="flex w-full max-w-full min-w-0 gap-4 overflow-x-auto pb-2 snap-x snap-mandatory overscroll-x-contain md:gap-6">
-                {repos.map((repo) => {
-                  return (
-                    <article
-                      key={repo.href}
-                        className="w-[82vw] max-w-[420px] min-w-[220px] flex-shrink-0 snap-start sm:w-[360px] sm:min-w-[320px]"
+        {/* ── Projects / Closed Source ── */}
+        <div>
+          <h3 className="font-display text-2xl md:text-3xl text-neutral-900 mb-8">
+            {text.closedSource}
+          </h3>
+
+          {groups.length === 0 ? (
+            <p className="text-sm text-neutral-400 font-sans">{text.emptyGroups}</p>
+          ) : (
+            <div className="flex gap-4 overflow-x-auto pb-3 snap-x snap-mandatory -mx-1 px-1 sm:grid sm:grid-cols-2 lg:grid-cols-3 sm:overflow-visible sm:pb-0 sm:snap-none">
+              {groups.map((group, index) => {
+                const displayName = typeof group.name === "string"
+                  ? group.name
+                  : (group.name as Record<string, string>)[language] || Object.values(group.name)[0]
+                return (
+                  <article key={displayName} className="shrink-0 w-72 snap-start sm:w-auto sm:shrink">
+                    <button
+                      type="button"
+                      onClick={() => setActiveGroupIndex(index)}
+                      className="block w-full text-left group"
                     >
-                      <a
-                        href={repo.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                          className="block w-full h-full rounded-md p-3 sm:p-4 hover:bg-gray-50 dark:hover:bg-gray-900 transition-colors"
-                      >
-                        <div className="flex items-center justify-between gap-3">
-                          <span className="text-base font-medium text-gray-900 dark:text-white">{repo.name}</span>
-                          <span className="text-xs text-gray-400">github.com</span>
-                        </div>
-                        <p className="text-sm text-gray-600 dark:text-gray-400 mt-2 line-clamp-2 sm:line-clamp-3">{repo.description || text.repoNoDescription}</p>
-                        {repo.tags.length > 0 && (
-                          <div className="flex flex-wrap gap-2 mt-2 sm:mt-3">
-                            {repo.tags.map((tag) => (
-                              <span key={tag} className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-xs rounded text-gray-600 dark:text-gray-400">{tag}</span>
-                            ))}
+                      <div className="aspect-[16/9] overflow-hidden rounded-xl bg-neutral-50 border border-neutral-100 mb-3">
+                        {group.photos[0] ? (
+                          <img
+                            src={group.photos[0].src}
+                            alt={group.photos[0].alt}
+                            className="h-full w-full object-cover group-hover:scale-[1.02] transition-transform duration-500"
+                            loading="lazy"
+                          />
+                        ) : (
+                          <div className="flex h-full items-center justify-center text-xs text-neutral-400 font-sans">
+                            {text.noImage}
                           </div>
                         )}
-                      </a>
-                      {repo.website && (
-                        <a href={repo.website} target="_blank" rel="noopener noreferrer" className="mt-2 inline-flex text-xs text-blue-600 dark:text-blue-400 hover:underline">{text.website}</a>
-                      )}
-                    </article>
-                  )
-                })}
-              </div>
-            )}
-          </div>
-
-          {/* Project Images */}
-          <div className="p-0">
-            <div className="flex items-center justify-between gap-4">
-              <h3 className="text-lg font-light">{text.closedSource}</h3>
-            </div>
-
-            {groups.length === 0 ? (
-              <p className="text-sm text-gray-500 dark:text-gray-400 mt-3">{text.emptyGroups}</p>
-            ) : (
-              <div className="mt-3 sm:mt-4">
-                <div className="flex w-full max-w-full min-w-0 gap-4 overflow-x-auto pb-2 snap-x snap-mandatory overscroll-x-contain sm:gap-6 sm:grid sm:grid-cols-2 lg:grid-cols-3 sm:overflow-visible sm:pb-0 sm:snap-none">
-                  {groups.map((group, index) => {
-                    const displayName = typeof group.name === 'string' ? group.name : (group.name as Record<string,string>)[language] || Object.values(group.name)[0]
-                    return (
-                      <article key={displayName} className="w-[82vw] max-w-[340px] min-w-[220px] flex-shrink-0 snap-start sm:w-full sm:max-w-none sm:min-w-0">
-                        <div className="w-full">
-                          <button type="button" onClick={() => setActiveGroupIndex(index)} className="block w-full text-left">
-                            <div className="aspect-[16/9] overflow-hidden rounded-md bg-gray-100 dark:bg-gray-800">
-                              {group.photos[0] ? (
-                                <img src={group.photos[0].src} alt={group.photos[0].alt} className="h-full w-full object-cover" loading="lazy" />
-                              ) : (
-                                <div className="flex h-full w-full items-center justify-center text-xs text-gray-500">{text.noImage}</div>
-                              )}
-                            </div>
-
-                            <div className="mt-2 space-y-1">
-                              <div className="flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between sm:gap-2">
-                                <span className="text-sm text-gray-700 dark:text-gray-300 break-words leading-snug">{displayName}</span>
-                                {group.closedSource && <span className="text-[10px] text-gray-500 dark:text-gray-400">{text.closedSourceTag}</span>}
-                              </div>
-                              {group.description && <p className="text-xs text-gray-600 dark:text-gray-400 line-clamp-2 sm:line-clamp-3">{group.description}</p>}
-                            </div>
-                          </button>
-
-                          {group.website && (
-                            <a href={group.website} target="_blank" rel="noopener noreferrer" className="mt-2 inline-flex text-xs text-blue-600 dark:text-blue-400 hover:underline">{text.website}</a>
+                      </div>
+                      <div className="flex items-start justify-between gap-2">
+                        <div>
+                          <span className="font-display text-base text-neutral-900 group-hover:text-neutral-500 transition-colors leading-snug block">
+                            {displayName}
+                          </span>
+                          {group.description && (
+                            <p className="text-xs text-neutral-400 font-sans mt-1 line-clamp-2 leading-relaxed">
+                              {group.description}
+                            </p>
                           )}
                         </div>
-                      </article>
-                    )
-                  })}
-                </div>
-              </div>
-            )}
-          </div>
-
-          {activeGroup && (
-            <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 p-6" role="dialog" aria-modal="true">
-              <div className="relative w-full max-w-4xl rounded-lg bg-white dark:bg-gray-900 p-6 max-h-[90vh] flex flex-col">
-                <button type="button" onClick={() => setActiveGroupIndex(null)} className="absolute right-4 top-4 text-sm text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200">{text.close}</button>
-                <div className="flex-1 overflow-y-auto pr-1">
-                  <h4 className="text-lg font-medium text-gray-900 dark:text-white mb-4 break-words">{activeDisplayName}</h4>
-                  {activeGroup.description && <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">{activeGroup.description}</p>}
-                  {activeGroup.website && <a href={activeGroup.website} target="_blank" rel="noopener noreferrer" className="inline-flex text-xs text-blue-600 dark:text-blue-400 hover:underline mb-4">{text.website}</a>}
-
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    {activeGroup.photos.map((photo) => (
-                      <figure key={photo.src} className="space-y-2">
-                        <button type="button" onClick={() => setActivePhoto(photo)} className="block w-full">
-                          <div className="aspect-[4/3] overflow-hidden rounded-md border border-gray-200 dark:border-gray-800 bg-gray-100 dark:bg-gray-800">
-                            <img src={photo.src} alt={photo.alt} className="h-full w-full object-cover" loading="lazy" />
-                          </div>
-                        </button>
-                        <figcaption className="text-xs text-gray-600 dark:text-gray-400">{photo.title}</figcaption>
-                      </figure>
-                    ))}
-                  </div>
-                </div>
-              </div>
+                        {group.closedSource && (
+                          <span className="text-[10px] text-neutral-300 font-sans border border-neutral-200 rounded-full px-2 py-0.5 shrink-0 mt-0.5">
+                            {text.closedSourceTag}
+                          </span>
+                        )}
+                      </div>
+                    </button>
+                    {group.website && (
+                      <a
+                        href={group.website}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="mt-2 inline-flex text-xs text-neutral-400 hover:text-neutral-900 transition-colors font-sans"
+                      >
+                        {text.website}
+                      </a>
+                    )}
+                  </article>
+                )
+              })}
             </div>
           )}
-
-          {activePhoto && (
-            <div className="fixed inset-0 z-[60] flex items-center justify-center bg-black/80 p-6" role="dialog" aria-modal="true">
-              <div className="relative w-full max-w-5xl max-h-[90vh]">
-                <button type="button" onClick={() => setActivePhoto(null)} className="absolute right-2 top-2 rounded-md bg-black/60 px-3 py-1 text-xs text-white hover:bg-black/80">{text.close}</button>
-                <div className="overflow-hidden rounded-lg border border-gray-200 dark:border-gray-800 bg-black">
-                  <img src={activePhoto.src} alt={activePhoto.alt} className="h-auto w-full max-h-[85vh] object-contain" />
-                </div>
-              </div>
-            </div>
-          )}
-
         </div>
       </div>
+
+      {/* ── Photo gallery modal ── */}
+      {activeGroup && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4 md:p-8 backdrop-blur-sm"
+          role="dialog"
+          aria-modal="true"
+          onClick={() => setActiveGroupIndex(null)}
+        >
+          <div
+            className="relative w-full max-w-4xl rounded-2xl bg-white p-6 md:p-8 max-h-[90vh] flex flex-col shadow-xl"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex items-start justify-between mb-6">
+              <div>
+                <h4 className="font-display text-xl md:text-2xl text-neutral-900">{activeDisplayName}</h4>
+                {activeGroup.description && (
+                  <p className="text-sm text-neutral-500 font-sans mt-1 leading-relaxed max-w-lg">
+                    {activeGroup.description}
+                  </p>
+                )}
+                {activeGroup.website && (
+                  <a
+                    href={activeGroup.website}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex text-xs text-neutral-400 hover:text-neutral-900 transition-colors font-sans mt-2"
+                  >
+                    {copy[language].website}
+                  </a>
+                )}
+              </div>
+              <button
+                type="button"
+                onClick={() => setActiveGroupIndex(null)}
+                className="shrink-0 ml-4 text-xs text-neutral-400 hover:text-neutral-900 transition-colors font-sans border border-neutral-200 rounded-lg px-3 py-1.5"
+              >
+                {text.close}
+              </button>
+            </div>
+
+            <div className="flex-1 overflow-y-auto">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {activeGroup.photos.map((photo) => (
+                  <figure key={photo.src} className="space-y-2">
+                    <button type="button" onClick={() => setActivePhoto(photo)} className="block w-full group">
+                      <div className="aspect-[4/3] overflow-hidden rounded-xl border border-neutral-100 bg-neutral-50">
+                        <img
+                          src={photo.src}
+                          alt={photo.alt}
+                          className="h-full w-full object-cover group-hover:scale-[1.02] transition-transform duration-500"
+                          loading="lazy"
+                        />
+                      </div>
+                    </button>
+                    <figcaption className="text-xs text-neutral-400 font-sans">{photo.title}</figcaption>
+                  </figure>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* ── Lightbox ── */}
+      {activePhoto && (
+        <div
+          className="fixed inset-0 z-[60] flex items-center justify-center bg-black/90 p-4 md:p-8 backdrop-blur-sm"
+          role="dialog"
+          aria-modal="true"
+          onClick={() => setActivePhoto(null)}
+        >
+          <div className="relative w-full max-w-5xl max-h-[90vh]" onClick={(e) => e.stopPropagation()}>
+            <button
+              type="button"
+              onClick={() => setActivePhoto(null)}
+              className="absolute right-3 top-3 rounded-lg bg-white/10 px-3 py-1.5 text-xs text-white hover:bg-white/20 transition-colors font-sans backdrop-blur-sm"
+            >
+              {text.close}
+            </button>
+            <div className="overflow-hidden rounded-2xl">
+              <img
+                src={activePhoto.src}
+                alt={activePhoto.alt}
+                className="h-auto w-full max-h-[85vh] object-contain"
+              />
+            </div>
+            <p className="text-center text-xs text-white/60 font-sans mt-3">{activePhoto.title}</p>
+          </div>
+        </div>
+      )}
     </section>
   )
 }

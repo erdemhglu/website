@@ -12,18 +12,18 @@ export function LanguageToggle() {
   }, [])
 
   if (!mounted) {
-    return <div className="h-14 w-16 rounded-md border border-gray-300 bg-white" />
+    return <div className="h-7 w-16 rounded-lg border border-neutral-200 bg-white" />
   }
 
   return (
-    <div className="inline-flex flex-col sm:flex-row items-stretch rounded-md border border-gray-300 dark:border-gray-700 overflow-hidden bg-white dark:bg-gray-900">
+    <div className="inline-flex flex-row items-stretch rounded-lg border border-neutral-200 overflow-hidden bg-white font-sans">
       <button
         type="button"
         onClick={() => setLanguage("de")}
-        className={`w-full px-2.5 py-1 text-xs font-medium text-center transition-colors ${
+        className={`px-3 py-1 text-xs font-medium text-center transition-colors ${
           language === "de"
-            ? "bg-gray-900 text-white dark:bg-white dark:text-gray-900"
-            : "text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800"
+            ? "bg-neutral-900 text-white"
+            : "text-neutral-500 hover:bg-neutral-50"
         }`}
         aria-pressed={language === "de"}
         aria-label="Deutsch"
@@ -33,10 +33,10 @@ export function LanguageToggle() {
       <button
         type="button"
         onClick={() => setLanguage("en")}
-        className={`w-full px-2.5 py-1 text-xs font-medium text-center transition-colors ${
+        className={`px-3 py-1 text-xs font-medium text-center transition-colors ${
           language === "en"
-            ? "bg-gray-900 text-white dark:bg-white dark:text-gray-900"
-            : "text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800"
+            ? "bg-neutral-900 text-white"
+            : "text-neutral-500 hover:bg-neutral-50"
         }`}
         aria-pressed={language === "en"}
         aria-label="English"

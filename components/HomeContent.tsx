@@ -1,8 +1,7 @@
 "use client"
 
-import { Mail, Radio } from "lucide-react"
+import { Radio } from "lucide-react"
 import { SiGithub, SiSignal } from "@icons-pack/react-simple-icons"
-import { ThemeToggle } from "@/components/ThemeToggle"
 import { LanguageToggle } from "@/components/LanguageToggle"
 import HomeSections from "@/components/HomeSections"
 import type { GithubRepo, ProjectGroup } from "@/components/PortfolioSection"
@@ -27,23 +26,16 @@ type HomeContentProps = {
 
 const copy = {
   de: {
-    roles: {
-      radio: "Funkamateur",
-      developer: "Softwareentwickler",
-    },
+    roles: { radio: "Funkamateur", developer: "Softwareentwickler" },
     about: "Bachelorstudent der Informatik mit starkem Interesse an Amateurfunk, Leiterplatten-Design (PCB) sowie Web- und Systemprogrammierung.",
+    scrollHint: "Projekte & Blog ↓",
   },
   en: {
-    roles: {
-      radio: "Amateur radio operator",
-      developer: "Software developer",
-    },
+    roles: { radio: "Amateur radio operator", developer: "Software developer" },
     about: "A computer science undergraduate with a strong interest in amateur radio, PCB design, web development, and systems programming.",
+    scrollHint: "Projects & Blog ↓",
   },
-} satisfies Record<Language, {
-  roles: { radio: string; developer: string }
-  about: string
-}>
+} satisfies Record<Language, { roles: { radio: string; developer: string }; about: string; scrollHint: string }>
 
 export default function HomeContent({ posts, repos, groups }: HomeContentProps) {
   const { language } = useLanguage()
@@ -58,100 +50,127 @@ export default function HomeContent({ posts, repos, groups }: HomeContentProps) 
     description: group.description ? group.description[language] : undefined,
   }))
 
-  const currentCopy = copy[language]
+  const t = copy[language]
 
   return (
-    <div className="h-[100dvh] overflow-y-auto overflow-x-hidden snap-y snap-mandatory scroll-smooth bg-white dark:bg-black text-gray-900 dark:text-white font-mono transition-colors pb-[max(1.5rem,env(safe-area-inset-bottom))]">
-      <div className="fixed top-6 right-6 z-10 hidden items-center gap-2 sm:flex">
-        <LanguageToggle />
-        <ThemeToggle />
-      </div>
+    <div className="min-h-[100dvh] overflow-y-auto overflow-x-hidden bg-white text-neutral-900 font-sans">
 
-      <div className="fixed top-[max(0.75rem,env(safe-area-inset-top))] right-[max(0.75rem,env(safe-area-inset-right))] z-10 flex flex-col items-end gap-2 sm:hidden">
-        <LanguageToggle />
-        <ThemeToggle />
-      </div>
+      {/* ── HERO ─────────────────────────────────────────── */}
+      <section className="min-h-[100dvh] flex flex-col px-6 sm:px-12 md:px-20 py-8">
 
-      <div className="flex flex-col">
-        <header className="min-h-[100dvh] snap-start flex items-center justify-center p-4 sm:p-6 pt-[max(1rem,env(safe-area-inset-top))]">
-          <div className="max-w-4xl w-full">
-            <div className="flex flex-col md:flex-row items-center md:items-start gap-6 md:gap-10">
-              <div className="flex-shrink-0">
-                <img
-                  src="/erdem.jpg"
-                  alt="Erdem Hacısalihoğlu"
-                  className="w-40 h-40 sm:w-48 sm:h-48 md:w-64 md:h-64 rounded-full object-cover border-2 border-gray-200 dark:border-gray-700"
-                />
-              </div>
+        {/* Top bar */}
+        <div className="flex items-center justify-between mb-auto">
+          <span className="text-xs tracking-[0.2em] uppercase text-neutral-400 font-sans select-none">
+            erdem.hacisalihoglu.eu
+          </span>
+          <LanguageToggle />
+        </div>
 
-              <div className="text-center md:text-left space-y-4">
-                <h1 className="text-4xl sm:text-5xl md:text-6xl font-light text-gray-900 dark:text-white tracking-tight break-words">
-                  Erdem Hacısalihoğlu
-                </h1>
+        {/* Main: name + photo */}
+        <div className="flex-1 flex items-center py-12 md:py-16">
+          <div className="w-full flex flex-col md:flex-row md:items-end md:justify-between gap-10">
 
-                <div className="text-base sm:text-lg text-gray-500 dark:text-gray-400 font-light mb-2">
-                  <span className="mr-2">{currentCopy.roles.radio}</span>
-                  <span className="inline-flex items-center justify-center gap-2 px-2 py-0.5 border border-gray-200 dark:border-gray-800 rounded-md text-xs text-gray-600 dark:text-gray-400 mr-2 whitespace-nowrap">
-                    <Radio className="h-3.5 w-3.5" aria-hidden="true" />
-                    <a href="https://ans.bundesnetzagentur.de/Amateurfunk/Rufzeichen.aspx" target="_blank" rel="noopener noreferrer">DJ1EH</a>
-                  </span>
-                  <span>&amp; {currentCopy.roles.developer}</span>
-                </div>
+            {/* Name block */}
+            <div className="flex-1 min-w-0">
+              <h1 className="font-display text-[clamp(3.8rem,11vw,9.5rem)] leading-[0.88] tracking-tight">
+                <span className="text-neutral-900">Erdem</span><br />
+                <em className="not-italic italic bg-gradient-to-r from-neutral-900 to-neutral-400 bg-clip-text text-transparent">
+                  Hacısalihoğlu
+                </em>
+              </h1>
 
-                <p className="text-gray-700 dark:text-gray-300 leading-relaxed text-base sm:text-lg font-light max-w-xl md:max-w-none mx-auto md:mx-0">
-                  {currentCopy.about}
-                </p>
-
-                <div className="mt-3 text-sm text-gray-600 dark:text-gray-400 mb-2">
-                  <span className="font-medium mr-2">Contact</span>
-                  <a href="mailto:erdem@hacisalihoglu.de" className="underline hover:text-blue-600 dark:hover:text-blue-400">erdem@hacisalihoglu.de</a>
-                </div>
-
-                <div className="flex flex-wrap items-center gap-3 justify-center md:justify-start">
-                  <a
-                    href="https://github.com/erdemhglu/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-3 py-2 border border-gray-200 dark:border-gray-800 rounded-md text-gray-400 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-900 transition-colors duration-200"
-                  >
-                    <SiGithub size={20} />
-                    <span className="text-sm">GitHub</span>
-                  </a>
-
-                  <a
-                    href="https://www.linkedin.com/in/erdem-hacisalihoglu/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-3 py-2 border border-gray-200 dark:border-gray-800 rounded-md text-gray-400 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-900 transition-colors duration-200"
-                  >
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden>
-                      <path d="M4.98 3.5C4.98 4.88 3.88 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM0 8.99h5V24H0V8.99zM8.5 8.99h4.79v2.04h.07c.67-1.27 2.31-2.61 4.76-2.61 5.09 0 6.03 3.35 6.03 7.7V24h-5V16.5c0-1.79-.03-4.09-2.5-4.09-2.5 0-2.88 1.95-2.88 3.97V24h-5V8.99z" />
-                    </svg>
-                    <span className="text-sm">LinkedIn</span>
-                  </a>
-
-                  <a
-                    href="https://signal.me/#u/erdemhglu.01"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-3 py-2 border border-gray-200 dark:border-gray-800 rounded-md text-gray-400 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-900 transition-colors duration-200"
-                  >
-                    <SiSignal size={20} />
-                    <span className="text-sm">Signal</span>
-                  </a>
-                </div>
+              <div className="mt-8 flex flex-wrap gap-2">
+                {/* Funkamateur — amber/orange */}
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-amber-200 bg-amber-50 text-xs text-amber-700 font-sans tracking-wide">
+                  <Radio className="w-3 h-3" />
+                  {t.roles.radio} · DJ1EH
+                </span>
+                {/* Softwareentwickler — indigo */}
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-sky-200 bg-sky-50 text-xs text-sky-700 font-sans tracking-wide">
+                  {t.roles.developer}
+                </span>
               </div>
             </div>
 
+            {/* Photo */}
+            <div className="flex-shrink-0 self-start md:self-end">
+              <img
+                src="/erdem.jpg"
+                alt="Erdem Hacısalihoğlu"
+                className="w-40 h-40 sm:w-52 sm:h-52 md:w-64 md:h-64 rounded-2xl object-cover transition-all duration-500"
+              />
+            </div>
           </div>
-        </header>
+        </div>
 
-        <main className="w-full px-4 sm:px-6 pb-12">
-          <div className="max-w-4xl w-full mx-auto">
-            <HomeSections posts={posts} repos={githubRepos} groups={projectGroups} />
+        {/* Bottom: bio + links */}
+        <div className="border-t border-neutral-100 pt-8 grid grid-cols-1 md:grid-cols-2 gap-8 items-end">
+          <p className="text-base md:text-lg text-neutral-600 leading-relaxed font-sans max-w-lg">
+            {t.about}
+          </p>
+
+          <div className="flex flex-col gap-5 md:items-end">
+            <div className="flex flex-wrap gap-2">
+
+              {/* GitHub */}
+              <a
+                href="https://github.com/erdemhglu/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-neutral-200 text-sm font-sans text-neutral-700 hover:border-neutral-900 hover:bg-neutral-50 transition-all duration-200"
+              >
+                <span className="text-neutral-900"><SiGithub size={16} /></span>
+                GitHub
+              </a>
+
+              {/* LinkedIn — LinkedIn blue icon, always visible */}
+              <a
+                href="https://www.linkedin.com/in/erdem-hacisalihoglu/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-blue-200 text-sm font-sans text-neutral-700 hover:bg-blue-50 hover:border-blue-400 transition-all duration-200"
+              >
+                <span style={{ color: "#0A66C2" }}>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
+                    <path d="M4.98 3.5C4.98 4.88 3.88 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM0 8.99h5V24H0V8.99zM8.5 8.99h4.79v2.04h.07c.67-1.27 2.31-2.61 4.76-2.61 5.09 0 6.03 3.35 6.03 7.7V24h-5V16.5c0-1.79-.03-4.09-2.5-4.09-2.5 0-2.88 1.95-2.88 3.97V24h-5V8.99z" />
+                  </svg>
+                </span>
+                LinkedIn
+              </a>
+
+              {/* Signal — Signal blue icon, always visible */}
+              <a
+                href="https://signal.me/#u/erdemhglu.01"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-blue-200 text-sm font-sans text-neutral-700 hover:bg-blue-50 hover:border-blue-400 transition-all duration-200"
+              >
+                <span style={{ color: "#3A76F0" }}><SiSignal size={16} /></span>
+                Signal
+              </a>
+
+              {/* Email */}
+              <a
+                href="mailto:erdem@hacisalihoglu.de"
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-neutral-200 text-sm font-sans text-neutral-700 hover:border-neutral-400 hover:bg-neutral-50 transition-all duration-200"
+              >
+                erdem@hacisalihoglu.de
+              </a>
+            </div>
+
+            <span className="text-xs text-neutral-300 tracking-widest select-none font-sans">
+              {t.scrollHint}
+            </span>
           </div>
-        </main>
-      </div>
+        </div>
+      </section>
+
+      {/* ── SECTIONS ─────────────────────────────────────── */}
+      <main className="w-full px-6 sm:px-12 md:px-20 pb-16">
+        <div className="max-w-5xl mx-auto">
+          <HomeSections posts={posts} repos={githubRepos} groups={projectGroups} />
+        </div>
+      </main>
     </div>
   )
 }

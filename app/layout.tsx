@@ -1,9 +1,22 @@
 import type { Metadata } from 'next'
-import { GeistSans } from 'geist/font/sans'
-import { GeistMono } from 'geist/font/mono'
+import { Instrument_Serif, Inter } from 'next/font/google'
 import { ThemeProvider } from '@/components/theme-provider'
 import { LanguageProvider } from '@/components/LanguageProvider'
 import './globals.css'
+
+const instrumentSerif = Instrument_Serif({
+  weight: '400',
+  style: ['normal', 'italic'],
+  subsets: ['latin'],
+  variable: '--font-display',
+  display: 'swap',
+})
+
+const inter = Inter({
+  subsets: ['latin'],
+  variable: '--font-sans',
+  display: 'swap',
+})
 
 export const metadata: Metadata = {
   title: 'Erdem Hacısalihoğlu',
@@ -27,14 +40,14 @@ export const metadata: Metadata = {
     address: false,
     telephone: false,
   },
-  metadataBase: new URL('https://erdem.hacisalihoglu.eu'), // Update with your actual domain
+  metadataBase: new URL('https://erdem.hacisalihoglu.eu'),
   alternates: {
     canonical: '/',
   },
   openGraph: {
     title: 'Erdem Hacısalihoğlu',
     description: 'Bachelorstudent der Informatik mit starkem Interesse an Amateurfunk, Leiterplatten-Design (PCB) sowie Web- und Systemprogrammierung.',
-    url: 'https://erdem.hacisalihoglu.eu', // Update with your actual domain
+    url: 'https://erdem.hacisalihoglu.eu',
     siteName: 'Erdem Hacısalihoğlu',
     locale: 'de_DE',
     type: 'website',
@@ -63,15 +76,8 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="de" suppressHydrationWarning>
+    <html lang="de" className={`${instrumentSerif.variable} ${inter.variable}`} suppressHydrationWarning>
       <head>
-        <style>{`
-html {
-  font-family: ${GeistMono.style.fontFamily};
-  --font-sans: ${GeistSans.variable};
-  --font-mono: ${GeistMono.variable};
-}
-        `}</style>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -81,7 +87,7 @@ html {
               "name": "Erdem Hacısalihoğlu",
               "jobTitle": "Software Developer",
               "description": "Bachelorstudent der Informatik mit starkem Interesse an Amateurfunk, Leiterplatten-Design (PCB) sowie Web- und Systemprogrammierung.",
-              "url": "https://erdem.hacisalihoglu.eu", // Update with your actual domain
+              "url": "https://erdem.hacisalihoglu.eu",
               "knowsAbout": [
                 "Computer Science",
                 "Ham Radio",
@@ -101,7 +107,7 @@ html {
         <ThemeProvider
           attribute="class"
           defaultTheme="light"
-          enableSystem
+          enableSystem={false}
           disableTransitionOnChange
         >
           <LanguageProvider>{children}</LanguageProvider>

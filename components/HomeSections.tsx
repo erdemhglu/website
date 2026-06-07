@@ -5,8 +5,6 @@ import PortfolioSection, { type GithubRepo, type ProjectGroup } from "@/componen
 import { Post } from "@/lib/posts"
 import { useLanguage } from "@/components/LanguageProvider"
 
-type ActiveSection = "blog" | "portfolio" | null
-
 type HomeSectionsProps = {
   posts: Post[]
   repos: GithubRepo[]
@@ -18,11 +16,11 @@ export default function HomeSections({ posts, repos, groups }: HomeSectionsProps
 
   const copy = {
     de: {
-      blogHeading: "Blog",
+      blogHeading: "Schreiben",
       blogSub: "Neueste Beitraege",
     },
     en: {
-      blogHeading: "Blog",
+      blogHeading: "Writing",
       blogSub: "Recent posts",
     },
   } as const
@@ -30,24 +28,23 @@ export default function HomeSections({ posts, repos, groups }: HomeSectionsProps
   const text = copy[language]
 
   return (
-    <div className="space-y-0">
-      <section className="min-h-[100svh] snap-start flex items-center py-4 sm:py-8 md:h-auto md:min-h-[100svh] md:overflow-visible">
-        <div className="w-full px-4 h-full min-h-0 md:h-auto">
-          <PortfolioSection repos={repos} groups={groups} />
-        </div>
-      </section>
+    <div>
+      {/* Portfolio / Work section */}
+      <PortfolioSection repos={repos} groups={groups} />
 
-      <section id="blog" className="min-h-[100svh] snap-start flex items-center border-t border-gray-200 dark:border-gray-800 py-6 sm:py-8">
-        <div className="w-full px-4">
-          <div className="mb-6">
-            <h2 className="text-xl md:text-2xl font-light text-gray-900 dark:text-white">{text.blogHeading}</h2>
-            <p className="text-sm text-gray-500 dark:text-gray-400 font-light">{text.blogSub}</p>
-          </div>
-
-          <div>
-            <BlogPreview posts={posts} isExpanded={true} showToggleButton={false} />
-          </div>
+      {/* Blog section */}
+      <section id="blog" className="pt-16 pb-8">
+        <div className="flex items-center gap-4 mb-10">
+          <span className="text-xs tracking-[0.2em] uppercase text-neutral-300 font-sans select-none">02</span>
+          <div className="flex-1 h-px bg-neutral-100" />
+          <span className="text-xs tracking-[0.2em] uppercase text-neutral-400 font-sans">{text.blogHeading}</span>
         </div>
+
+        <h2 className="font-display text-2xl md:text-3xl text-neutral-900 mb-8">
+          {text.blogSub}
+        </h2>
+
+        <BlogPreview posts={posts} isExpanded={true} showToggleButton={false} />
       </section>
     </div>
   )

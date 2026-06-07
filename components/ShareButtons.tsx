@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import type { SVGProps } from "react"
-import { Share2, Link as LinkIcon, Check } from "lucide-react"
+import { Link as LinkIcon, Check } from "lucide-react"
 import { useLanguage } from "@/components/LanguageProvider"
 
 const TwitterIcon = (props: SVGProps<SVGSVGElement>) => (
@@ -28,16 +28,18 @@ export default function ShareButtons({ title, url }: ShareButtonsProps) {
 
   const copy = {
     de: {
-      label: "Diesen Beitrag teilen",
-      twitter: "Auf Twitter teilen",
+      label: "Teilen",
+      twitter: "Auf X (Twitter) teilen",
       linkedin: "Auf LinkedIn teilen",
-      copy: "Link kopieren",
+      copyLabel: "Link kopieren",
+      copied: "Kopiert",
     },
     en: {
-      label: "Share this post",
-      twitter: "Share on Twitter",
+      label: "Share",
+      twitter: "Share on X (Twitter)",
       linkedin: "Share on LinkedIn",
-      copy: "Copy link",
+      copyLabel: "Copy link",
+      copied: "Copied",
     },
   } as const
 
@@ -53,52 +55,51 @@ export default function ShareButtons({ title, url }: ShareButtonsProps) {
       await navigator.clipboard.writeText(url)
       setCopied(true)
       setTimeout(() => setCopied(false), 2000)
-    } catch (err) {
-      console.error('Failed to copy:', err)
+    } catch {
+      /* ignore */
     }
   }
 
   return (
-    <div className="border-t border-b border-gray-200 dark:border-gray-800 py-6 my-8">
-      <div className="flex items-center justify-between">
-        <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
-          <Share2 className="h-4 w-4" />
-          <span className="font-medium">{text.label}</span>
-        </div>
-        
-        <div className="flex items-center gap-2">
-          {/* Twitter */}
-          <a
-            href={shareLinks.twitter}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="p-2 rounded-md bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 transition-colors"
-            aria-label={text.twitter}
-          >
-            <TwitterIcon className="h-4 w-4" />
-          </a>
+    <div className="flex items-center gap-4 py-6 my-8 border-t border-b border-neutral-100">
+      <span className="text-xs tracking-[0.15em] uppercase text-neutral-400 font-sans mr-2">
+        {text.label}
+      </span>
 
-          {/* LinkedIn */}
-          <a
-            href={shareLinks.linkedin}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="p-2 rounded-md bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 transition-colors"
-            aria-label={text.linkedin}
-          >
-            <LinkedinIcon className="h-4 w-4" />
-          </a>
+      <a
+        href={shareLinks.twitter}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label={text.twitter}
+        className="w-8 h-8 flex items-center justify-center border border-neutral-200 rounded-lg text-neutral-400 hover:text-neutral-900 hover:border-neutral-400 transition-colors"
+      >
+        <TwitterIcon className="h-3.5 w-3.5" />
+      </a>
 
-          {/* Copy Link */}
-          <button
-            onClick={copyToClipboard}
-            className="p-2 rounded-md bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 transition-colors"
-            aria-label={text.copy}
-          >
-            {copied ? <Check className="h-4 w-4 text-green-600 dark:text-green-400" /> : <LinkIcon className="h-4 w-4" />}
-          </button>
-        </div>
-      </div>
+      <a
+        href={shareLinks.linkedin}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label={text.linkedin}
+        className="w-8 h-8 flex items-center justify-center border border-neutral-200 rounded-lg text-neutral-400 hover:text-neutral-900 hover:border-neutral-400 transition-colors"
+      >
+        <LinkedinIcon className="h-3.5 w-3.5" />
+      </a>
+
+      <button
+        onClick={copyToClipboard}
+        aria-label={text.copyLabel}
+        className="w-8 h-8 flex items-center justify-center border border-neutral-200 rounded-lg text-neutral-400 hover:text-neutral-900 hover:border-neutral-400 transition-colors"
+      >
+        {copied
+          ? <Check className="h-3.5 w-3.5 text-green-600" />
+          : <LinkIcon className="h-3.5 w-3.5" />
+        }
+      </button>
+
+      {copied && (
+        <span className="text-xs text-neutral-400 font-sans">{text.copied}</span>
+      )}
     </div>
   )
 }

@@ -25,11 +25,9 @@ export default async function BlogPage() {
   const blogPosts = await getAllPosts()
 
   return (
-    <div className="min-h-[100svh] overflow-x-hidden bg-white dark:bg-black text-gray-900 dark:text-white transition-colors">
+    <div className="min-h-[100svh] bg-white text-neutral-900">
       <BlogHeader showRss />
-
-      {/* Main Content */}
-      <main className="max-w-4xl mx-auto px-6 py-12">
+      <main className="max-w-3xl mx-auto px-6 md:px-8 py-12 md:py-16">
         <PostList posts={blogPosts} />
       </main>
     </div>
