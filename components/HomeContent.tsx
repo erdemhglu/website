@@ -1,7 +1,7 @@
 "use client"
 
 import { Radio } from "lucide-react"
-import { SiGithub, SiSignal } from "@icons-pack/react-simple-icons"
+import { SiGithub, SiSignal, SiWhatsapp } from "@icons-pack/react-simple-icons"
 import { LanguageToggle } from "@/components/LanguageToggle"
 import HomeSections from "@/components/HomeSections"
 import type { GithubRepo, ProjectGroup } from "@/components/PortfolioSection"
@@ -74,9 +74,7 @@ export default function HomeContent({ posts, repos, groups }: HomeContentProps) 
             <div className="flex-1 min-w-0">
               <h1 className="font-display text-[clamp(3.8rem,11vw,9.5rem)] leading-[0.88] tracking-tight">
                 <span className="text-neutral-900">Erdem</span><br />
-                <em className="not-italic italic bg-gradient-to-r from-neutral-900 to-neutral-400 bg-clip-text text-transparent">
                   Hacısalihoğlu
-                </em>
               </h1>
 
               <div className="mt-8 flex flex-wrap gap-2">
@@ -147,6 +145,28 @@ export default function HomeContent({ posts, repos, groups }: HomeContentProps) 
               >
                 <span style={{ color: "#3A76F0" }}><SiSignal size={16} /></span>
                 Signal
+              </a>
+
+              {/* WhatsApp — green */}
+              <a
+                href="https://wa.me/4915123570220"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-green-200 text-sm font-sans text-neutral-700 hover:bg-green-50 hover:border-green-400 transition-all duration-200"
+              >
+                <span style={{ color: "#25D366" }}><SiWhatsapp size={16} /></span>
+                WhatsApp
+              </a>
+
+              {/* QRZ.com — ham radio callsign */}
+              <a
+                href="https://www.qrz.com/db/DJ1EH"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-amber-200 text-sm font-sans text-neutral-700 hover:bg-amber-50 hover:border-amber-400 transition-all duration-200"
+              >
+                <Radio size={16} className="text-amber-600" />
+                QRZ · DJ1EH
               </a>
 
               {/* Email */}
