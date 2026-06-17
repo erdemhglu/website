@@ -149,7 +149,7 @@ export default function HomeContent({ posts, repos, groups }: HomeContentProps) 
 
               {/* WhatsApp — green */}
               <a
-                href="https://wa.me/4915123570220"
+                href="https://wa.me/16154485074"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-green-200 text-sm font-sans text-neutral-700 hover:bg-green-50 hover:border-green-400 transition-all duration-200"
