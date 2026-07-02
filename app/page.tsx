@@ -71,6 +71,17 @@ export default async function PersonalWebsite() {
 
   const projectGroups = [
     {
+      name: "AsferAmbalaj.com",
+      website: "https://asferambalaj.com",
+      description: {
+        de: "Eine urspruenglich mit einem fertigen Theme und einem Drag-and-Drop-Baukasten erstellte WordPress-Website wurde mit Next.js und Tailwind CSS neu entwickelt. Die Inhaltsstruktur wurde beibehalten, waehrend die Stile dem urspruenglichen Design angepasst wurden, und uebermaessige Gestaltungselemente wurden vereinfacht. Dadurch konnte eine deutliche Leistungssteigerung erzielt und ein weniger ueberladenes, augenschonenderes Erscheinungsbild erreicht werden. Die urspruengliche Website nutzte das RuizArch-Theme des BSLThemes-Teams.",
+        en: "Rebuilt a WordPress site that was originally created with a pre-made theme and a drag-and-drop page builder, using Next.js and Tailwind CSS. The content layout was kept the same while the styling was matched to the original design, and overly excessive visual elements were simplified. This resulted in a significant performance boost and a cleaner, less visually overwhelming experience. The original site used the RuizArch theme by the BSLThemes team.",
+      },
+      photos: [
+        { src: "https://i.ibb.co/ZzkSYbSN/chrome-oq39o-XMEe2.png", alt: "Homepage", title: "Homepage" },
+      ],
+    },
+    {
       name: "AgacMaketi.com",
       website: "https://agacmaketi.com",
       description: {
