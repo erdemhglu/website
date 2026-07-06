@@ -78,7 +78,7 @@ export default async function PersonalWebsite() {
         en: "Rebuilt a WordPress site that was originally created with a pre-made theme and a drag-and-drop page builder, using Next.js and Tailwind CSS. The content layout was kept the same while the styling was matched to the original design, and overly excessive visual elements were simplified. This resulted in a significant performance boost and a cleaner, less visually overwhelming experience. The original site used the RuizArch theme by the BSLThemes team.",
       },
       photos: [
-        { src: "https://i.ibb.co/ZzkSYbSN/chrome-oq39o-XMEe2.png", alt: "Homepage", title: "Homepage" },
+        { src: "https://i.ibb.co/rK5v2jYz/brave-d-NIWRm-STb-V.png", alt: "Homepage", title: "Homepage" },
       ],
     },
     {
