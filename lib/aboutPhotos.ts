@@ -32,7 +32,7 @@ const captions: Record<string, AboutPhotoCaption> = {
     en: 'Technology club at the high school info fair',
     namesNoIndex: {
       de: ' (mit Arda Turan, Eren Uysal, Onur Eltuğral, Poyraz Ali Kalyoncu)',
-      en: ' (with Arda Turan,Eren Uysal, Onur Eltuğral, Poyraz Ali Kalyoncu)',
+      en: ' (with Arda Turan, Eren Uysal, Onur Eltuğral, Poyraz Ali Kalyoncu)',
     },
   },
   'about-3.webp': {
