@@ -1,6 +1,5 @@
 import { getAllPosts } from "@/lib/posts"
 import PostList from "@/components/PostList"
-import BlogHeader from "@/components/BlogHeader"
 import { Metadata } from "next"
 
 export const metadata: Metadata = {
@@ -25,8 +24,7 @@ export default async function BlogPage() {
   const blogPosts = await getAllPosts()
 
   return (
-    <div className="min-h-[100svh] bg-white text-neutral-900">
-      <BlogHeader showRss />
+    <div className="min-h-[100svh] bg-white dark:bg-neutral-950 text-neutral-900 dark:text-neutral-100">
       <main className="max-w-3xl mx-auto px-6 md:px-8 py-12 md:py-16">
         <PostList posts={blogPosts} />
       </main>

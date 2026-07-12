@@ -6,7 +6,7 @@ import { Sun, Moon } from "lucide-react"
 import { useLanguage } from "@/components/LanguageProvider"
 
 export function ThemeToggle() {
-  const { theme, setTheme } = useTheme()
+  const { resolvedTheme, setTheme } = useTheme()
   const { language } = useLanguage()
   const [mounted, setMounted] = useState(false)
 
@@ -24,11 +24,11 @@ export function ThemeToggle() {
 
   return (
     <button
-      onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+      onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
       className="w-8 h-8 rounded-md border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 hover:bg-gray-50 dark:hover:bg-gray-800 flex items-center justify-center transition-colors"
       aria-label={language === "de" ? "Thema wechseln" : "Toggle theme"}
     >
-      {theme === "dark" ? (
+      {resolvedTheme === "dark" ? (
         <Sun className="h-4 w-4 text-gray-700 dark:text-gray-300" />
       ) : (
         <Moon className="h-4 w-4 text-gray-700 dark:text-gray-300" />

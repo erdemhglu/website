@@ -57,13 +57,42 @@
     @apply border-border;
   }
   body {
-    @apply bg-white text-neutral-900;
+    @apply bg-white text-neutral-900 dark:bg-neutral-950 dark:text-neutral-100;
     font-family: var(--font-sans), system-ui, sans-serif;
   }
 }
 
 /* Syntax highlighting styles */
 @import 'highlight.js/styles/github.css';
+
+.dark .hljs {
+  background: theme('colors.neutral.900');
+  color: theme('colors.neutral.300');
+}
+.dark .hljs-comment,
+.dark .hljs-quote {
+  color: theme('colors.neutral.500');
+}
+.dark .hljs-keyword,
+.dark .hljs-selector-tag,
+.dark .hljs-literal {
+  color: theme('colors.sky.400');
+}
+.dark .hljs-string,
+.dark .hljs-attr,
+.dark .hljs-template-tag {
+  color: theme('colors.emerald.400');
+}
+.dark .hljs-number,
+.dark .hljs-variable,
+.dark .hljs-built_in {
+  color: theme('colors.amber.400');
+}
+.dark .hljs-title,
+.dark .hljs-section,
+.dark .hljs-name {
+  color: theme('colors.violet.400');
+}
 
 /* Prevent content overflow on mobile */
 .prose {

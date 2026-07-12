@@ -35,12 +35,12 @@ export default function HomeSections({ posts, repos, groups }: HomeSectionsProps
       {/* Blog section */}
       <section id="blog" className="pt-16 pb-8">
         <div className="flex items-center gap-4 mb-10">
-          <span className="text-xs tracking-[0.2em] uppercase text-neutral-300 font-sans select-none">02</span>
-          <div className="flex-1 h-px bg-neutral-100" />
-          <span className="text-xs tracking-[0.2em] uppercase text-neutral-400 font-sans">{text.blogHeading}</span>
+          <span className="text-xs tracking-[0.2em] uppercase text-neutral-300 dark:text-neutral-600 font-sans select-none">02</span>
+          <div className="flex-1 h-px bg-neutral-100 dark:bg-neutral-800" />
+          <span className="text-xs tracking-[0.2em] uppercase text-neutral-400 dark:text-neutral-500 font-sans">{text.blogHeading}</span>
         </div>
 
-        <h2 className="font-display text-2xl md:text-3xl text-neutral-900 mb-8">
+        <h2 className="font-display text-2xl md:text-3xl text-neutral-900 dark:text-neutral-100 mb-8">
           {text.blogSub}
         </h2>
 

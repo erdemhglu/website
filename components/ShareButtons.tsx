@@ -61,8 +61,8 @@ export default function ShareButtons({ title, url }: ShareButtonsProps) {
   }
 
   return (
-    <div className="flex items-center gap-4 py-6 my-8 border-t border-b border-neutral-100">
-      <span className="text-xs tracking-[0.15em] uppercase text-neutral-400 font-sans mr-2">
+    <div className="flex items-center gap-4 py-6 my-8 border-t border-b border-neutral-100 dark:border-neutral-800">
+      <span className="text-xs tracking-[0.15em] uppercase text-neutral-400 dark:text-neutral-500 font-sans mr-2">
         {text.label}
       </span>
 
@@ -71,7 +71,7 @@ export default function ShareButtons({ title, url }: ShareButtonsProps) {
         target="_blank"
         rel="noopener noreferrer"
         aria-label={text.twitter}
-        className="w-8 h-8 flex items-center justify-center border border-neutral-200 rounded-lg text-neutral-400 hover:text-neutral-900 hover:border-neutral-400 transition-colors"
+        className="w-8 h-8 flex items-center justify-center border border-neutral-200 dark:border-neutral-700 rounded-lg text-neutral-400 dark:text-neutral-500 hover:text-neutral-900 dark:hover:text-neutral-100 hover:border-neutral-400 dark:hover:border-neutral-500 transition-colors"
       >
         <TwitterIcon className="h-3.5 w-3.5" />
       </a>
@@ -81,7 +81,7 @@ export default function ShareButtons({ title, url }: ShareButtonsProps) {
         target="_blank"
         rel="noopener noreferrer"
         aria-label={text.linkedin}
-        className="w-8 h-8 flex items-center justify-center border border-neutral-200 rounded-lg text-neutral-400 hover:text-neutral-900 hover:border-neutral-400 transition-colors"
+        className="w-8 h-8 flex items-center justify-center border border-neutral-200 dark:border-neutral-700 rounded-lg text-neutral-400 dark:text-neutral-500 hover:text-neutral-900 dark:hover:text-neutral-100 hover:border-neutral-400 dark:hover:border-neutral-500 transition-colors"
       >
         <LinkedinIcon className="h-3.5 w-3.5" />
       </a>
@@ -89,7 +89,7 @@ export default function ShareButtons({ title, url }: ShareButtonsProps) {
       <button
         onClick={copyToClipboard}
         aria-label={text.copyLabel}
-        className="w-8 h-8 flex items-center justify-center border border-neutral-200 rounded-lg text-neutral-400 hover:text-neutral-900 hover:border-neutral-400 transition-colors"
+        className="w-8 h-8 flex items-center justify-center border border-neutral-200 dark:border-neutral-700 rounded-lg text-neutral-400 dark:text-neutral-500 hover:text-neutral-900 dark:hover:text-neutral-100 hover:border-neutral-400 dark:hover:border-neutral-500 transition-colors"
       >
         {copied
           ? <Check className="h-3.5 w-3.5 text-green-600" />
@@ -98,7 +98,7 @@ export default function ShareButtons({ title, url }: ShareButtonsProps) {
       </button>
 
       {copied && (
-        <span className="text-xs text-neutral-400 font-sans">{text.copied}</span>
+        <span className="text-xs text-neutral-400 dark:text-neutral-500 font-sans">{text.copied}</span>
       )}
     </div>
   )

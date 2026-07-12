@@ -1,20 +1,21 @@
 import type { Metadata } from 'next'
-import { Instrument_Serif, Inter } from 'next/font/google'
+import { Roboto } from 'next/font/google'
 import { ThemeProvider } from '@/components/theme-provider'
 import { LanguageProvider } from '@/components/LanguageProvider'
+import Sidebar from '@/components/Sidebar'
 import './globals.css'
 
-const instrumentSerif = Instrument_Serif({
-  weight: '400',
-  style: ['normal', 'italic'],
+const roboto = Roboto({
+  weight: ['400', '500', '700'],
   subsets: ['latin'],
-  variable: '--font-display',
+  variable: '--font-sans',
   display: 'swap',
 })
 
-const inter = Inter({
+const robotoDisplay = Roboto({
+  weight: ['400', '500'],
   subsets: ['latin'],
-  variable: '--font-sans',
+  variable: '--font-display',
   display: 'swap',
 })
 
@@ -40,16 +41,16 @@ export const metadata: Metadata = {
     address: false,
     telephone: false,
   },
-  metadataBase: new URL('https://erdem.pro'),
+  metadataBase: new URL('https://erdemhacisalihoglu.com'),
   alternates: {
     canonical: '/',
   },
   openGraph: {
     title: 'Erdem Hacısalihoğlu',
     description: 'Bachelorstudent der Informatik mit starkem Interesse an Amateurfunk, Leiterplatten-Design (PCB) sowie Web- und Systemprogrammierung.',
-    url: 'https://erdem.pro',
+    url: 'https://erdemhacisalihoglu.com',
     siteName: 'Erdem Hacısalihoğlu',
-    locale: 'de_DE',
+    locale: 'en_US',
     type: 'website',
   },
   twitter: {
@@ -76,7 +77,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="de" className={`${instrumentSerif.variable} ${inter.variable}`} suppressHydrationWarning>
+    <html lang="en" className={`${robotoDisplay.variable} ${roboto.variable}`} suppressHydrationWarning>
       <head>
         <script
           type="application/ld+json"
@@ -87,7 +88,7 @@ export default function RootLayout({
               "name": "Erdem Hacısalihoğlu",
               "jobTitle": "Software Developer",
               "description": "Bachelorstudent der Informatik mit starkem Interesse an Amateurfunk, Leiterplatten-Design (PCB) sowie Web- und Systemprogrammierung.",
-              "url": "https://erdem.pro",
+              "url": "https://erdemhacisalihoglu.com",
               "knowsAbout": [
                 "Computer Science",
                 "Ham Radio",
@@ -103,14 +104,19 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body suppressHydrationWarning>
+      <body className="bg-white dark:bg-neutral-950" suppressHydrationWarning>
         <ThemeProvider
           attribute="class"
-          defaultTheme="light"
-          enableSystem={false}
+          defaultTheme="system"
+          enableSystem
           disableTransitionOnChange
         >
-          <LanguageProvider>{children}</LanguageProvider>
+          <LanguageProvider>
+            <div className="md:flex">
+              <Sidebar />
+              <div className="min-w-0 flex-1 pt-14 md:pt-0">{children}</div>
+            </div>
+          </LanguageProvider>
         </ThemeProvider>
       </body>
     </html>

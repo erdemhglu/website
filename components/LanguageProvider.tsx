@@ -14,14 +14,25 @@ const LanguageContext = createContext<LanguageContextValue | null>(null)
 
 const storageKey = "site-language"
 
+// German is the default for any German-speaking locale (de-DE, de-AT, de-CH, ...); everywhere else defaults to English.
+function detectDefaultLanguage(): Language {
+  if (typeof navigator === "undefined") return "en"
+
+  const locales = navigator.languages && navigator.languages.length > 0 ? navigator.languages : [navigator.language]
+
+  return locales.some((locale) => locale?.toLowerCase().startsWith("de")) ? "de" : "en"
+}
+
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
-  const [language, setLanguage] = useState<Language>("de")
+  const [language, setLanguage] = useState<Language>("en")
   const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
     const stored = typeof window !== "undefined" ? window.localStorage.getItem(storageKey) : null
     if (stored === "de" || stored === "en") {
       setLanguage(stored)
+    } else {
+      setLanguage(detectDefaultLanguage())
     }
     setMounted(true)
   }, [])
