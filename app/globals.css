@@ -1,3 +1,5 @@
+@import 'highlight.js/styles/github.css';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -63,8 +65,6 @@
 }
 
 /* Syntax highlighting styles */
-@import 'highlight.js/styles/github.css';
-
 .dark .hljs {
   background: theme('colors.neutral.900');
   color: theme('colors.neutral.300');
