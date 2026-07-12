@@ -2,6 +2,7 @@
 
 import BlogPreview from "@/components/BlogPreview"
 import PortfolioSection, { type GithubRepo, type ProjectGroup } from "@/components/PortfolioSection"
+import SkillsSection from "@/components/SkillsSection"
 import { Post } from "@/lib/posts"
 import { useLanguage } from "@/components/LanguageProvider"
 
@@ -32,10 +33,13 @@ export default function HomeSections({ posts, repos, groups }: HomeSectionsProps
       {/* Portfolio / Work section */}
       <PortfolioSection repos={repos} groups={groups} />
 
+      {/* Skills section */}
+      <SkillsSection />
+
       {/* Blog section */}
       <section id="blog" className="pt-16 pb-8">
         <div className="flex items-center gap-4 mb-10">
-          <span className="text-xs tracking-[0.2em] uppercase text-neutral-300 dark:text-neutral-600 font-sans select-none">02</span>
+          <span className="text-xs tracking-[0.2em] uppercase text-neutral-300 dark:text-neutral-600 font-sans select-none">03</span>
           <div className="flex-1 h-px bg-neutral-100 dark:bg-neutral-800" />
           <span className="text-xs tracking-[0.2em] uppercase text-neutral-400 dark:text-neutral-500 font-sans">{text.blogHeading}</span>
         </div>

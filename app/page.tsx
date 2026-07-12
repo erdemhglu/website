@@ -5,6 +5,15 @@ export default async function PersonalWebsite() {
   const blogPosts = await getAllPosts()
   const githubRepos = [
     {
+      name: "website",
+      description: {
+        de: "Quellcode dieser Website — persoenliche Seite, Portfolio und Blog, gebaut mit Next.js, TypeScript und Tailwind CSS.",
+        en: "Source code of this website — personal site, portfolio, and blog, built with Next.js, TypeScript, and Tailwind CSS.",
+      },
+      href: "https://github.com/erdemhglu/website",
+      tags: ["TypeScript", "Next.js", "Tailwind CSS"],
+    },
+    {
       name: "otobusum-anlik",
       description: {
         de: "Fork von metkm's plattformuebergreifender Transit-App, auf iOS-only mit Apple Maps umgestellt. Bietet Live-Bus-Tracking, Routenvisualisierung und Optimierung fuer iOS-Geraete.",

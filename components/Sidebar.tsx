@@ -4,6 +4,7 @@ import { useState } from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { Menu, X, Newspaper, Layers, UserRound, Rss } from "lucide-react"
+import { SiGithub } from "@icons-pack/react-simple-icons"
 import { ThemeToggle } from "@/components/ThemeToggle"
 import { LanguageToggle } from "@/components/LanguageToggle"
 import { useLanguage } from "@/components/LanguageProvider"
@@ -16,6 +17,7 @@ const copy = {
     projects: "Projekte",
     aboutNav: "Über mich",
     rss: "RSS-Feed",
+    openSource: "Open Source · GPLv3",
     menu: "Menü",
     close: "Schliessen",
   },
@@ -26,6 +28,7 @@ const copy = {
     projects: "Projects",
     aboutNav: "About Me",
     rss: "RSS feed",
+    openSource: "Open Source · GPLv3",
     menu: "Menu",
     close: "Close",
   },
@@ -89,14 +92,25 @@ function SidebarBody({
         </Link>
       </nav>
 
-      <a
-        href="/rss.xml"
-        className="mt-auto flex items-center gap-2.5 px-3 py-2 rounded-lg text-xs text-neutral-400 hover:text-neutral-900 dark:text-neutral-500 dark:hover:text-neutral-100 transition-colors font-sans"
-        aria-label={text.rss}
-      >
-        <Rss className="w-3.5 h-3.5" />
-        {text.rss}
-      </a>
+      <div className="mt-auto flex flex-col">
+        <a
+          href="https://github.com/erdemhglu/website"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center gap-2.5 px-3 py-2 rounded-lg text-xs text-neutral-400 hover:text-neutral-900 dark:text-neutral-500 dark:hover:text-neutral-100 transition-colors font-sans"
+        >
+          <SiGithub size={14} />
+          {text.openSource}
+        </a>
+        <a
+          href="/rss.xml"
+          className="flex items-center gap-2.5 px-3 py-2 rounded-lg text-xs text-neutral-400 hover:text-neutral-900 dark:text-neutral-500 dark:hover:text-neutral-100 transition-colors font-sans"
+          aria-label={text.rss}
+        >
+          <Rss className="w-3.5 h-3.5" />
+          {text.rss}
+        </a>
+      </div>
     </div>
   )
 }
