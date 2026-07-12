@@ -40,14 +40,14 @@ export const metadata: Metadata = {
     address: false,
     telephone: false,
   },
-  metadataBase: new URL('https://erdem.hacisalihoglu.eu'),
+  metadataBase: new URL('https://erdem.pro'),
   alternates: {
     canonical: '/',
   },
   openGraph: {
     title: 'Erdem Hacısalihoğlu',
     description: 'Bachelorstudent der Informatik mit starkem Interesse an Amateurfunk, Leiterplatten-Design (PCB) sowie Web- und Systemprogrammierung.',
-    url: 'https://erdem.hacisalihoglu.eu',
+    url: 'https://erdem.pro',
     siteName: 'Erdem Hacısalihoğlu',
     locale: 'de_DE',
     type: 'website',
@@ -87,7 +87,7 @@ export default function RootLayout({
               "name": "Erdem Hacısalihoğlu",
               "jobTitle": "Software Developer",
               "description": "Bachelorstudent der Informatik mit starkem Interesse an Amateurfunk, Leiterplatten-Design (PCB) sowie Web- und Systemprogrammierung.",
-              "url": "https://erdem.hacisalihoglu.eu",
+              "url": "https://erdem.pro",
               "knowsAbout": [
                 "Computer Science",
                 "Ham Radio",

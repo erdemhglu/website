@@ -8,12 +8,12 @@ import { useLanguage } from "@/components/LanguageProvider"
 const copy = {
   de: {
     posts: "Beitraege",
-    site: "erdem.hacisalihoglu.eu",
+    site: "Erdem Hacisalihoglu",
     rssLabel: "RSS-Feed",
   },
   en: {
     posts: "Posts",
-    site: "erdem.hacisalihoglu.eu",
+    site: "Erdem Hacisalihoglu",
     rssLabel: "RSS feed",
   },
 }

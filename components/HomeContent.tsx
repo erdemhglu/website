@@ -60,9 +60,7 @@ export default function HomeContent({ posts, repos, groups }: HomeContentProps) 
 
         {/* Top bar */}
         <div className="flex items-center justify-between mb-auto">
-          <span className="text-xs tracking-[0.2em] uppercase text-neutral-400 font-sans select-none">
-            erdem.hacisalihoglu.eu
-          </span>
+          <span className="text-xs tracking-[0.2em] uppercase text-neutral-400 font-sans select-none"></span>
           <LanguageToggle />
         </div>
 

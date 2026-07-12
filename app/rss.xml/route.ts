@@ -6,20 +6,20 @@ export async function GET() {
   const rss = `<?xml version="1.0" encoding="UTF-8" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>erdem.hacisalihoglu.eu - Blog</title>
-    <link>https://erdem.hacisalihoglu.eu</link>
+    <title>Erdem Hacisalihoglu - Blog</title>
+    <link>https://erdem.pro</link>
     <description>Artikel über Algorithmen, Programmiersprachen, Typsysteme und Softwareentwicklung</description>
     <language>de</language>
-    <atom:link href="https://erdem.hacisalihoglu.eu/rss.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://erdem.pro/rss.xml" rel="self" type="application/rss+xml" />
     ${posts
       .map(
         (post) => `
     <item>
       <title>${escapeXml(post.title)}</title>
-      <link>https://erdem.hacisalihoglu.eu/blog/posts/${post.slug}</link>
+      <link>https://erdem.pro/blog/posts/${post.slug}</link>
       <description>${escapeXml(post.excerpt)}</description>
       <pubDate>${new Date(post.date).toUTCString()}</pubDate>
-      <guid>https://erdem.hacisalihoglu.eu/blog/posts/${post.slug}</guid>
+      <guid>https://erdem.pro/blog/posts/${post.slug}</guid>
       ${post.tags.map(tag => `<category>${escapeXml(tag)}</category>`).join('\n      ')}
     </item>`
       )

@@ -10,4 +10,4 @@ Disallow: /*.webp$
 Disallow: /*.svg$
 
 # Sitemap location (update with your actual domain)
-Sitemap: https://erdem.hacisalihoglu.eu/sitemap.xml
+Sitemap: https://erdem.pro/sitemap.xml

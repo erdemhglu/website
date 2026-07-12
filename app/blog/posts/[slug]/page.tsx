@@ -49,7 +49,7 @@ export default async function PostPage({ params }: PageProps) {
     notFound()
   }
 
-  const postUrl = `https://erdem.hacisalihoglu.eu/blog/posts/${slug}`
+  const postUrl = `https://erdem.pro/blog/posts/${slug}`
 
   return <PostPageClient post={post} postUrl={postUrl} />
 }
