@@ -14,12 +14,12 @@ export default async function PersonalWebsite() {
       tags: ["TypeScript", "Next.js", "Tailwind CSS"],
     },
     {
-      name: "woo-gib-efatura",
+      name: "gib-efatura-for-woocommerce",
       description: {
         de: "Ein WordPress-Plugin, das aus WooCommerce-Bestellungen ueber das GIB-e-Arsiv-Portal e-Fatura/e-Arsiv-Rechnungen erstellt, die Rechnung per E-Mail versendet, sie auf der Website speichert bzw. zum Download bereitstellt und die Erstellung doppelter Rechnungen verhindert.",
         en: "A WordPress plugin that issues e-Fatura/e-Arsiv invoices from WooCommerce orders via the GIB e-Arsiv portal, emails the invoice to the customer, stores it on the site for download, and prevents duplicate invoice generation.",
       },
-      href: "https://github.com/erdemhglu/woo-gib-efatura",
+      href: "https://github.com/erdemhglu/gib-efatura-for-woocommerce",
       tags: ["PHP", "WordPress", "WooCommerce"],
     },
     {
